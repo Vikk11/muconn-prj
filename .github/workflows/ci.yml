@@ -1,0 +1,51 @@
+name: Full Stack CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Frontend Code
+        uses: actions/checkout@v2
+        with:
+          path: muconn-frontend
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.6.1
+
+      - name: Install Frontend Dependencies
+        working-directory: ./muconn-frontend
+        run: npm install
+
+      - name: Run Frontend Tests
+        working-directory: ./muconn-frontend
+        run: npm test
+
+  backend:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Backend code
+      - uses: actions/checkout@v2
+      - with:
+          path: muconn-backend
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '20.6.1'
+
+      - name: Build and Test Backend
+        working-directory: ./muconn-backend  
+        run: |
+          mvn clean install
+          mvn test
+    
+
