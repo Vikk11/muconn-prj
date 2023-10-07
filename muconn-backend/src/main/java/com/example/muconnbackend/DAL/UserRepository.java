@@ -1,14 +1,9 @@
 package com.example.muconnbackend.DAL;
+
 import com.example.muconnbackend.Model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-@Repository
-public class UserRepository{
-
-
+public interface IUserRepository extends JpaRepository<User, Long>{
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
 }
