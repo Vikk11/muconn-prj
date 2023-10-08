@@ -1,5 +1,5 @@
 package com.example.muconnbackend.Service;
-import com.example.muconnbackend.DAL.IUserRepository;
+import com.example.muconnbackend.DAL.UserRepository;
 import com.example.muconnbackend.Model.User;
 import com.example.muconnbackend.Model.UserDto;
 import jakarta.transaction.Transactional;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    private final IUserRepository userRepository;
+    private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(IUserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
