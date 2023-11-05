@@ -37,3 +37,10 @@ form {
     font-size: 18px;
     cursor: pointer;
   }
+
+  .form .error-message{
+    color:  #FF5733;
+    font-weight: 500;
+    margin-left: 0;
+    padding: 0;
+  }

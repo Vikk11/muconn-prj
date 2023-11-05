@@ -13,7 +13,7 @@ const Signup = ({ isOpen, onClose }) => {
 
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [isSignupSuccess, setSignupSuccess] = useState(false);
-  const [isEmailValid, setsValidEmail] = useState(true);
+  // const [isEmailValid, setsValidEmail] = useState(true);
 
   const [error, setError] = useState('');
 
@@ -28,12 +28,12 @@ const Signup = ({ isOpen, onClose }) => {
       setPasswordsMatch(value === formData.password);
     }
 
-    if (name === 'email'){
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) {
-        setsValidEmail(false);
-      }
-    }
+    // if (name === 'email'){
+    //   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    //   if (!emailRegex.test(value)) {
+    //     setsValidEmail(false);
+    //   }
+    // }
   };
 
   const handleSubmit = async (e) => {
@@ -43,10 +43,9 @@ const Signup = ({ isOpen, onClose }) => {
       return;
     }
 
-    if (!isEmailValid) {
-      setError('Invalid email format');
-      return;
-    }
+    // if (!isEmailValid) {
+    //   return;
+    // }
 
     try {
       const { email, username, password } = formData;
@@ -58,6 +57,7 @@ const Signup = ({ isOpen, onClose }) => {
         password: '',
         confirmPassword: '',
       });
+      setError('');
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
