@@ -33,8 +33,8 @@ jobs:
 
     steps:
       - name: Checkout Backend code
-      - uses: actions/checkout@v2
-      - with:
+        uses: actions/checkout@v2
+        with:
           path: muconn-backend
 
       - name: Set up Java
