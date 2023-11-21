@@ -16,13 +16,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig{
+public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/", "/search", "/playlist","profile").permitAll()
+                                .requestMatchers("/", "/search", "/playlist", "profile").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
@@ -30,6 +30,7 @@ public class SecurityConfig{
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
+
     @Bean
     public PasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
