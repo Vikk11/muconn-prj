@@ -15,6 +15,8 @@
     <description>muconn-backend</description>
     <properties>
         <java.version>17</java.version>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.login>sqp_f141fcaf41085cd09b8e2eb601635bc3b7875807</sonar.login>
     </properties>
     <repositories>
         <repository>
@@ -85,7 +87,6 @@
         </dependency>
 
     </dependencies>
-
 
     <build>
         <plugins>
