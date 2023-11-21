@@ -4,6 +4,7 @@ import Login from "./pages/LoginPage";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Playlists from "./pages/Playlists";
+import Playlist from "./pages/PlaylistPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element = {<Login/>}/>
         <Route path="/search" element = {<Search/>}/>
         <Route path="/playlists" element = {<Playlists/>}/>
+        <Route path="/playlist" element = {<Playlist/>}/>
       </Routes>
     </Router>
     </div>

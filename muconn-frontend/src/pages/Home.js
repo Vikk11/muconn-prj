@@ -15,13 +15,13 @@ function Home() {
               <h1>Muconn Playlists</h1>
           </div>
         <div className="container-section">
-            <a href="/playlist" className="box">
+            <Link to="/playlist" className="box">
               <img src={topHits} className="box-img"/>
               <div className = "box-text">
                 <h2>Today's Top Hits</h2>
                 <p>Top 50 Songs of the Day</p>
               </div>
-            </a>
+            </Link>
             <div className="box"></div>
             <div className="box"></div>
             <div className="box"></div>
