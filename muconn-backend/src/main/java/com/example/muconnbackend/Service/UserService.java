@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class UserService {
@@ -16,6 +17,15 @@ public class UserService {
     public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    private UserDto convertUserToUserDto(User user){
+        UserDto userDto = new UserDto();
+        userDto.setUsername(user.getUsername());
+        userDto.setEmail(user.getEmail());
+        userDto.setPassword(user.getPassword());
+
+        return userDto;
     }
 
     public String hashPassword(String password){
@@ -45,5 +55,23 @@ public class UserService {
         userRepository.save(user);
 
         return true;
+    }
+
+    public UserDto findByUsername(String username){
+        User user = userRepository.findByUsername(username);
+
+        if (user == null){
+            return null;
+        }
+
+        return convertUserToUserDto(user);
+    }
+
+    public boolean authenticateUser(String username, String password){
+        UserDto user = findByUsername(username);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())){
+            return true;
+        }
+        return false;
     }
 }

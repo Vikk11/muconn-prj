@@ -1,0 +1,24 @@
+.playlist-background{
+    background-color: #18122b;
+    background-image: linear-gradient(180deg, #18122b, #715f7d);
+    margin-left: 250px;
+    height: 300px;
+}
+
+.playlist-cover{
+    margin: auto;
+    width: 15%;
+    padding: 10px;
+    padding-top: 40px;
+}
+
+.playlist-cover img{
+    height: 180px;
+    width: auto;
+    border-radius: 10px;
+}
+
+.playlist-cover h2{
+    color:white;
+    font-weight: bold;
+}

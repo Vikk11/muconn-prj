@@ -27,4 +27,15 @@ public class UserController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@RequestBody UserDto userDto){
+        boolean loginSuccessful = userService.authenticateUser(userDto.getUsername(), userDto.getPassword());
+
+        if(loginSuccessful){
+            return ResponseEntity.ok("Logged in successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Log in failed");
+        }
+    }
+
 }

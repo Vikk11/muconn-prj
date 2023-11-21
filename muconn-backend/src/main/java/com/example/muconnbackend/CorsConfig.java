@@ -13,15 +13,12 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        // Allow requests from the React front-end (adjust origins as needed)
         config.addAllowedOrigin("http://localhost:3000");
 
-        // Allow specific HTTP methods (e.g., GET, POST, PUT)
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
 
-        // Allow specific headers (e.g., "Content-Type", "Authorization")
         config.addAllowedHeader("Content-Type");
         config.addAllowedHeader("Authorization");
 

@@ -8,6 +8,13 @@ public class UserDto {
     public UserDto(String username, String email, String password) {
     }
 
+    public UserDto(String username, String password) {
+    }
+
+    public UserDto() {
+
+    }
+
     public String getUsername(){
         return username;
     }

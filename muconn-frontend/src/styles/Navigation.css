@@ -1,0 +1,82 @@
+.leftSideNav{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #201a33;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+}
+
+.leftSideNav a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 19px;
+    color: #d9d9d9;
+    display: block;
+    transition: 0.3s;
+    position: relative;
+}
+
+.leftSideNav a:hover {
+    color: #ffffff;
+}
+
+.leftSideNav a.active-link {
+    color: #ffffff;
+}
+
+.leftSideNav i{
+    padding-right: 18px;
+    font-size: 30px;
+    color:#5c537a;
+    transition: 0.3s;
+}
+
+.leftSideNav a.active-link i {
+    color: #a597d1;
+}
+
+.leftSideNav a:hover i{
+    color: #a597d1;
+}
+
+.leftSideNav .navLogo{
+    width: 100px;
+    height: auto;
+    margin-bottom: 30px;
+    padding-left:30px;
+}
+
+.leftSideNav a:before {
+    content: "";
+    width: 4px; 
+    height: 100%;
+    background-color: #b1a1ed; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+}
+
+.leftSideNav a.active-link:before,
+.leftSideNav a:focus:before {
+    opacity: 1; 
+}
+
+.rightSideNav{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #201a33;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+}

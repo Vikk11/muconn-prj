@@ -37,3 +37,25 @@ form {
     font-size: 18px;
     cursor: pointer;
   }
+
+  .form .error-message{
+    color:  #FF5733;
+    font-weight: 500;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    form input{
+      width: 70%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: auto;
+      height: auto;
+    }
+    
+
+  }
