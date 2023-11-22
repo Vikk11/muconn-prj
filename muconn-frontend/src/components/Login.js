@@ -49,10 +49,10 @@ function Login() {
     <div className="login-form">
       <form id="loginForm" onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
-          <label htmlFor="username">Username</label>
-          <input name="username" type="text" value={formData.username} onChange={handleChange}/>
-          <label htmlFor="password">Password</label>
-          <input name="password" type="password" value={formData.password} onChange={handleChange}/>
+          <label htmlFor="login-username">Username</label>
+          <input name="login-username" type="text" value={formData.username} onChange={handleChange}/>
+          <label htmlFor="login-password">Password</label>
+          <input name="login-password" type="password" value={formData.password} onChange={handleChange}/>
           <button type="submit" className="btn-submit">Log in</button>
       </form>
     </div>
