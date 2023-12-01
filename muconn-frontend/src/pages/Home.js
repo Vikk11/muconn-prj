@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }from 'react'
 import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
 import topHits from "../assets/top-hits.png"
@@ -6,9 +6,14 @@ import "../styles/Home.css"
 import {Link} from 'react-router-dom';
 
 function Home() {
+  const [leftNavVisible, setLeftNavVisible] = useState(false);
+
   return (
     <div>
-      <LeftNav></LeftNav>
+      <button className="mobile-nav-toggle" onClick={() => setLeftNavVisible(!leftNavVisible)}>
+        <i className='bx bx-menu'></i>
+      </button>
+      <LeftNav visible={leftNavVisible} onClose={() => setLeftNavVisible(false)}/>
       <Link to="/login" className="login-btn">Log in</Link>
       <section>
           <div className="section-title">
@@ -19,12 +24,26 @@ function Home() {
               <img src={topHits} className="box-img"/>
               <div className = "box-text">
                 <h2>Today's Top Hits</h2>
-                <p>Top 50 Songs of the Day</p>
               </div>
             </Link>
-            <div className="box"></div>
-            <div className="box"></div>
-            <div className="box"></div>
+            <Link to="/playlist" className="box">
+              <img src={topHits} className="box-img"/>
+              <div className = "box-text">
+                <h2>Today's Top Hits</h2>
+              </div>
+            </Link>
+            <Link to="/playlist" className="box">
+              <img src={topHits} className="box-img"/>
+              <div className = "box-text">
+                <h2>Today's Top Hits</h2>
+              </div>
+            </Link>
+            <Link to="/playlist" className="box">
+              <img src={topHits} className="box-img"/>
+              <div className = "box-text">
+                <h2>Today's Top Hits</h2>
+              </div>
+            </Link>
         </div>
       </section>
       <p className="preview-text">Sign up to get access to all features.</p>

@@ -22,3 +22,76 @@
     color:white;
     font-weight: bold;
 }
+
+.playlist-buttons-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-left: 350px;
+}
+
+.playlist-buttons-container button {
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #b1a1ed;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 45px;
+}
+
+.playlist-buttons-container i{
+    font-size: 24px;
+    font-weight: bold;
+    color:#18122b ;
+}
+
+.wide-text-box {
+    width: 800px;
+    padding: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    border:none;
+    outline: none; 
+    border-radius: 15px;
+    background-color: #393053;
+    color: white;
+    padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .playlist-background {
+        margin-left: 0; 
+        height: auto; 
+    }
+
+    .playlist-cover {
+        width: 90%;
+    }
+
+    .playlist-cover img {
+        height: auto;
+        width: 35%;
+        border-radius: 10px; 
+        margin-left: 110px;
+    }
+
+    .playlist-cover h2{
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .playlist-buttons-container {
+        margin-left: 0; 
+    }
+
+    .playlist-buttons-container button {
+        width: 30px;
+        padding: 4px;
+    }
+
+    .playlist-buttons-container i{
+        font-size: 17px;
+    }
+    
+}

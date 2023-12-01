@@ -11,6 +11,7 @@ form {
     height: 40px;
     width: 70%;
     border:none;
+    outline: none; 
     border-radius: 25px;
     background-color: #635985;
     font-size: 16px;
@@ -38,24 +39,24 @@ form {
     cursor: pointer;
   }
 
-  .form .error-message{
+  .error-message{
     color:  #FF5733;
     font-weight: 500;
     margin-left: 0;
     padding: 0;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 768px)  {
     form input{
-      width: 70%;
+      width: 85%;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      width: auto;
-      height: auto;
+      width: 100%;
+      padding: 20px;
+      margin-left: 20px;
     }
-    
 
   }

@@ -80,3 +80,40 @@
     transition: 0.5s;
     padding-top: 20px;
 }
+
+.close-btn {
+    position: absolute;
+    width:17%;
+    top: 10px;
+    right: 0px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    display:none;
+  }
+
+@media (max-width: 768px) {
+    .leftSideNav {
+      display: none; 
+    }
+  
+    .leftSideNav.visible {
+      display: block;
+    }
+  
+    .mobile-nav-toggle {
+      display: block; 
+      margin:10px;
+      background-color: #5c537a;
+      border:none;
+      border-radius: 5px;
+      color: #18122b;
+      font-size: 17px;
+    }
+
+    .close-btn{
+        display:block;
+    }
+  }

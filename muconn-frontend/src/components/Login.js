@@ -9,8 +9,8 @@ function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    loginUsername: '',
+    loginPassword: '',
   });
 
   const handleChange = (e) => {
@@ -25,18 +25,19 @@ function Login() {
     e.preventDefault();
 
     try {
-      const { username, password } = formData;
-      const response = await axios.post('http://localhost:8080/api/users/login', { username, password });
+      const { loginUsername, loginPassword } = formData;
+      const response = await axios.post('http://localhost:8080/api/users/login', { username: loginUsername, password: loginPassword });
       setLoginSuccess(true);
       setFormData({
-        username: '',
-        password: '',
+        loginUsername: '',
+        loginPassword: '',
       });
       setError('');
       navigate('/');
     } catch (error) {
       if (error.response) {
-        if (error.response.status === 400) {
+        console.log(error.response.data); 
+        if (error.response.status === 401) {
           setError(error.response.data);
         }
       } else {
@@ -44,15 +45,15 @@ function Login() {
       }
     }
   };
-  
+
   return (
     <div className="login-form">
       <form id="loginForm" onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
-          <label htmlFor="login-username">Username</label>
-          <input name="login-username" type="text" value={formData.username} onChange={handleChange}/>
-          <label htmlFor="login-password">Password</label>
-          <input name="login-password" type="password" value={formData.password} onChange={handleChange}/>
+          <label htmlFor="loginUsername">Username</label>
+          <input name="loginUsername" type="text" value={formData.loginUsername} onChange={handleChange}/>
+          <label htmlFor="loginPassword">Password</label>
+          <input name="loginPassword" type="password" value={formData.loginPassword} onChange={handleChange}/>
           <button type="submit" className="btn-submit">Log in</button>
       </form>
     </div>

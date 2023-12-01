@@ -76,9 +76,24 @@
     cursor: pointer;
   }
 
-  .signup-form form .error-message{
+.signup-form form .error-message{
     color:  #FF5733;
     font-weight: 500;
     margin-left: 0;
     padding: 0;
+}
+
+@media (max-width: 768px) {
+  .popup {
+    max-width: 100%;
   }
+
+  .signup-form form {
+    margin-right: 50px;
+  }
+
+  .signup-form .signup-title{
+    padding-right: 50px;
+  }
+}
+

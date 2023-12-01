@@ -13,7 +13,6 @@ const Signup = ({ isOpen, onClose }) => {
 
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [isSignupSuccess, setSignupSuccess] = useState(false);
-  // const [isEmailValid, setsValidEmail] = useState(true);
 
   const [error, setError] = useState('');
 
@@ -27,13 +26,6 @@ const Signup = ({ isOpen, onClose }) => {
     if (name === 'confirmPassword') {
       setPasswordsMatch(value === formData.password);
     }
-
-    // if (name === 'email'){
-    //   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    //   if (!emailRegex.test(value)) {
-    //     setsValidEmail(false);
-    //   }
-    // }
   };
 
   const handleSubmit = async (e) => {
@@ -42,14 +34,14 @@ const Signup = ({ isOpen, onClose }) => {
     if (!passwordsMatch) {
       return;
     }
-
-    // if (!isEmailValid) {
-    //   return;
-    // }
-
+    
     try {
       const { email, username, password } = formData;
+      console.log('Sending HTTP request with data:', { email, username, password });
+
       const response = await axios.post('http://localhost:8080/api/users/signup', { email, username, password });
+      console.log('HTTP request successful. Response:', response.data);
+
       setSignupSuccess(true);
       setFormData({
         email: '',
@@ -61,6 +53,7 @@ const Signup = ({ isOpen, onClose }) => {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
+          console.log('HTTP request failed with status 400. Error:', error.response.data);
           setError(error.response.data);
         }
       } else {

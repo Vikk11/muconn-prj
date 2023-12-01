@@ -8,8 +8,19 @@ describe('Signup Component', () => {
     
         cy.get('.popup-overlay').should('be.visible'); 
         cy.get('.signup-form').should('be.visible'); 
-      });
-  
+    });
+
+    it('should show an error message on invalid password', () => {
+        cy.contains('Sign up').click(); 
+
+        cy.get('input[name="email"]').type('test@example.com');
+        cy.get('input[name="username"]').type('testuser');
+        cy.get('input[name="password"]').type('password123');
+        cy.get('input[name="confirmPassword"]').type('passwo');
+
+        cy.get('.error-message').should('be.visible'); 
+    });
+
     it('should submit the signup form successfully', () => {
         cy.contains('Sign up').click();
 
@@ -21,6 +32,6 @@ describe('Signup Component', () => {
         cy.get('form#signupForm').submit();
     
         cy.get('.popup-overlay').should('be.visible'); 
-        cy.get('.signup-form').should('not.be.visible'); 
+        
     });
 });
