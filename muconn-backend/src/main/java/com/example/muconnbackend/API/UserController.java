@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
@@ -22,15 +21,18 @@ public class UserController {
         boolean registrationSuccessful = userService.registerUser(userDto);
 
         if (registrationSuccessful) {
+            System.out.println("User registered successfully: " + userDto.getUsername());
             return ResponseEntity.ok("Signed up successfully");
         } else {
+            System.out.println("Username or email already taken: " + userDto.getUsername());
             return ResponseEntity.badRequest().body("Username or email is already taken.");
         }
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody UserDto userDto){
-        boolean loginSuccessful = userService.authenticateUser(userDto.getUsername(), userDto.getPassword());
+        System.out.println("Received login request for user: " + userDto.getUsername());
+        boolean loginSuccessful = userService.authenticateUser(userDto);
 
         if(loginSuccessful){
             return ResponseEntity.ok("Logged in successfully");

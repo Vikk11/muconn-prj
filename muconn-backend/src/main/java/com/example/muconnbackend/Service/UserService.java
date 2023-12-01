@@ -1,4 +1,5 @@
 package com.example.muconnbackend.Service;
+import com.example.muconnbackend.DAL.PlaylistRepository;
 import com.example.muconnbackend.DAL.UserRepository;
 import com.example.muconnbackend.Model.User;
 import com.example.muconnbackend.Model.UserDto;
@@ -41,20 +42,26 @@ public class UserService {
 
     @Transactional
     public boolean registerUser(UserDto userDto) {
-        if (!isUserValid(userDto)) {
+        try {
+            if (!isUserValid(userDto)) {
+                return false;
+            }
+
+            String hashedPassword = hashPassword(userDto.getPassword());
+
+            User user = new User();
+            user.setUsername(userDto.getUsername());
+            user.setEmail(userDto.getEmail());
+            user.setPassword(hashedPassword);
+
+            userRepository.save(user);
+
+            return true;
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
             return false;
         }
-
-        String hashedPassword = hashPassword(userDto.getPassword());
-
-        User user = new User();
-        user.setUsername(userDto.getUsername());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(hashedPassword);
-
-        userRepository.save(user);
-
-        return true;
     }
 
     public UserDto findByUsername(String username){
@@ -64,12 +71,16 @@ public class UserService {
             return null;
         }
 
-        return convertUserToUserDto(user);
+        UserDto userDto = new UserDto();
+        userDto.setUsername(user.getUsername());
+        userDto.setPassword(user.getPassword());
+
+        return userDto;
     }
 
-    public boolean authenticateUser(String username, String password){
-        UserDto user = findByUsername(username);
-        if (user != null && passwordEncoder.matches(password, user.getPassword())){
+    public boolean authenticateUser(UserDto userDto){
+        UserDto user = findByUsername(userDto.getUsername());
+        if (user != null && passwordEncoder.matches(userDto.getPassword(), user.getPassword())){
             return true;
         }
         return false;

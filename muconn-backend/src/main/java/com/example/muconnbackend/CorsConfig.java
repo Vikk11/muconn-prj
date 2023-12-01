@@ -19,11 +19,7 @@ public class CorsConfig {
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
 
-        config.addAllowedHeader("Content-Type");
-        config.addAllowedHeader("Authorization");
-        config.addAllowedHeader("Access-Control-Allow-Origin");
-        config.addAllowedHeader("Access-Control-Allow-Methods");
-        config.addAllowedHeader("Access-Control-Allow-Headers");
+        config.addAllowedHeader("*");
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter((CorsConfigurationSource) source);

@@ -15,8 +15,7 @@ public class Album {
     private Artist artist;
     private String title;
     private LocalDate releaseDate;
-    @Lob
-    private byte[] coverImage;
+    private String coverImage;
 
     public Long getId() {
         return id;
@@ -50,11 +49,11 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
-    public byte[] getCoverImage() {
+    public String getCoverImage() {
         return coverImage;
     }
 
-    public void setCoverImage(byte[] coverImage) {
+    public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
     }
 }
