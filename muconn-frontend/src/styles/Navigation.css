@@ -116,4 +116,8 @@
     .close-btn{
         display:block;
     }
+
+    .rightSideNav{
+        display: none;
+    }
   }
