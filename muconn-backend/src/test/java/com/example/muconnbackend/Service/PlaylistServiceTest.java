@@ -7,9 +7,8 @@ import com.example.muconnbackend.Model.PlaylistDto;
 import com.example.muconnbackend.Model.PlaylistSong;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import org.mockito.Mock;
@@ -17,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -89,5 +89,27 @@ class PlaylistServiceTest {
         playlistService.createPlaylist(playlistDto);
 
         verify(playlistRepository, times(1)).save(any(Playlist.class));
+    }
+
+    @Test
+    void testGetAllPlaylists() {
+        // Mock data
+        Playlist playlist1 = new Playlist();
+        playlist1.setId(1L);
+        playlist1.setTitle("Playlist 1");
+        playlist1.setImage("/path/to/image1");
+
+        Playlist playlist2 = new Playlist();
+        playlist2.setId(2L);
+        playlist2.setTitle("Playlist 2");
+        playlist2.setImage("/path/to/image2");
+
+        List<Playlist> mockPlaylists = Arrays.asList(playlist1, playlist2);
+
+        when(playlistRepository.findAll()).thenReturn(mockPlaylists);
+
+        List<PlaylistDto> result = playlistService.getAllPlaylists();
+
+        verify(playlistRepository, times(1)).findAll();
     }
 }

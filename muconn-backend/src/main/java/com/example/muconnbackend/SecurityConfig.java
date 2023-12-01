@@ -18,7 +18,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/users/signup","api/users/login").permitAll()
+                                .requestMatchers("/api/users/signup","/api/users/login", "/api/playlists/user/{userId}", "/images/playlists/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())

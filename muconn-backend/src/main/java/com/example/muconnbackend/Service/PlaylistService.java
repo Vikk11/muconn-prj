@@ -6,6 +6,7 @@ import com.example.muconnbackend.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,6 +41,18 @@ public class PlaylistService {
         return convertPlaylistToPlaylistDto(playlist);
     }
 
+    public List<PlaylistDto> getAllPlaylists() {
+        List<Playlist> playlists = playlistRepository.findAll();
+        List<PlaylistDto> playlistDTOs = new ArrayList<>();
+
+        for (Playlist playlist : playlists) {
+            PlaylistDto playlistDTO = convertPlaylistToPlaylistDto(playlist);
+            playlistDTOs.add(playlistDTO);
+        }
+
+        return playlistDTOs;
+    }
+
     public List<PlaylistSong> getPlaylistSongs(Long playlistId) {
         return playlistSongRepository.findByPlaylist_Id(playlistId);
     }
@@ -53,5 +66,17 @@ public class PlaylistService {
         playlist.setPlaylistSongs(playlistDto.getPlaylistSongs());
 
         playlistRepository.save(playlist);
+    }
+
+    public List<PlaylistDto> getPlaylistsByUserId(Long userId){
+        List<Playlist> playlists = playlistRepository.findAllByUser_Id(userId);
+        List<PlaylistDto> playlistDTOs = new ArrayList<>();
+
+        for (Playlist playlist : playlists) {
+            PlaylistDto playlistDTO = convertPlaylistToPlaylistDto(playlist);
+            playlistDTOs.add(playlistDTO);
+        }
+
+        return playlistDTOs;
     }
 }
