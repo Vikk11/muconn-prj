@@ -3,7 +3,6 @@ package com.example.muconnbackend.Model;
 import com.example.muconnbackend.Model.Enums.Genre;
 import jakarta.persistence.*;
 
-import java.time.Duration;
 
 @Entity
 @Table(name = "songs")
@@ -21,7 +20,7 @@ public class Song {
     @Enumerated(EnumType.STRING)
     private Genre genre;
     private String audioFilePath;
-    private Duration duration;
+    private String duration;
 
     public Long getId() {
         return id;
@@ -71,11 +70,11 @@ public class Song {
         this.audioFilePath = audioFilePath;
     }
 
-    public Duration getDuration(){
+    public String getDuration(){
         return duration;
     }
 
-    public void setDuration(Duration duration){
+    public void setDuration(String duration){
         this.duration = duration;
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/playlists")
 public class PlaylistController {
     private final PlaylistService playlistService;
@@ -24,5 +23,11 @@ public class PlaylistController {
     public ResponseEntity<List<PlaylistDto>> getPlaylistsByUserId(@PathVariable Long userId) {
         List<PlaylistDto> playlists = playlistService.getPlaylistsByUserId(userId);
         return new ResponseEntity<>(playlists, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{userId}/playlist/{playlistId}")
+    public ResponseEntity<PlaylistDto> getPlaylistDetails(@PathVariable Long userId, @PathVariable Long playlistId) {
+        PlaylistDto playlist = playlistService.getPlaylistDetails(playlistId, userId);
+        return new ResponseEntity<>(playlist, HttpStatus.OK);
     }
 }

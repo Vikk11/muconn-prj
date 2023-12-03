@@ -24,14 +24,12 @@ import java.util.List;
 class PlaylistServiceTest {
     @Mock
     private PlaylistRepository playlistRepository;
-    @Mock
-    private PlaylistSongRepository playlistSongRepository;
     private PlaylistService playlistService;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        playlistService = new PlaylistService(playlistRepository, playlistSongRepository);
+        playlistService = new PlaylistService(playlistRepository);
     }
 
     @Test
@@ -58,33 +56,11 @@ class PlaylistServiceTest {
     }
 
     @Test
-    void testGetPlaylistSongs() {
-        // Arrange
-        Long playlistId = 1L;
-
-        PlaylistSong song1 = new PlaylistSong();
-        song1.setId(1L);
-
-        PlaylistSong song2 = new PlaylistSong();
-        song2.setId(2L);
-
-        when(playlistSongRepository.findByPlaylist_Id(playlistId)).thenReturn(Arrays.asList(song1, song2));
-
-        List<PlaylistSong> result = playlistService.getPlaylistSongs(playlistId);
-
-        assertNotNull(result);
-        assertEquals(2, result.size());
-
-        verify(playlistSongRepository, times(1)).findByPlaylist_Id(playlistId);
-    }
-
-    @Test
     void testCreatePlaylist() {
         PlaylistDto playlistDto = new PlaylistDto();
         playlistDto.setTitle("Test Playlist");
         playlistDto.setCreationDate(LocalDate.now());
         playlistDto.setImage("image/path");
-        playlistDto.setPlaylistSongs(Collections.emptyList());
 
         playlistService.createPlaylist(playlistDto);
 

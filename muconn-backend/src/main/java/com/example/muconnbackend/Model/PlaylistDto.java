@@ -10,9 +10,9 @@ public class PlaylistDto {
     private String title;
     private LocalDate creationDate;
     private String image;
-    private List<PlaylistSong> songs;
+//    private List<PlaylistSong> songs;
 
-    public PlaylistDto(User user, String title, LocalDate creationDate, String image, List<PlaylistSong> songs) {
+    public PlaylistDto(User user, String title, LocalDate creationDate, String image) {
     }
 
     public PlaylistDto() {
@@ -57,7 +57,7 @@ public class PlaylistDto {
         this.image = image;
     }
 
-    public List<PlaylistSong> getPlaylistSongs() {return songs;}
-
-    public void setPlaylistSongs(List<PlaylistSong> songs) {this.songs = songs;}
+//    public List<PlaylistSong> getPlaylistSongs() {return songs;}
+//
+//    public void setPlaylistSongs(List<PlaylistSong> songs) {this.songs = songs;}
 }

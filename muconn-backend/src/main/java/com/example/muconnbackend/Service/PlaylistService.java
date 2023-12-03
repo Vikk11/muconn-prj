@@ -12,11 +12,9 @@ import java.util.List;
 @Service
 public class PlaylistService {
     private final PlaylistRepository playlistRepository;
-    private final PlaylistSongRepository playlistSongRepository;
     @Autowired
-    public PlaylistService(PlaylistRepository playlistRepository, PlaylistSongRepository playlistSongRepository) {
+    public PlaylistService(PlaylistRepository playlistRepository) {
         this.playlistRepository = playlistRepository;
-        this.playlistSongRepository = playlistSongRepository;
     }
 
     private PlaylistDto convertPlaylistToPlaylistDto(Playlist playlist){
@@ -26,7 +24,6 @@ public class PlaylistService {
         playlistDto.setTitle(playlist.getTitle());
         playlistDto.setCreationDate(playlist.getCreationDate());
         playlistDto.setImage(playlist.getImage());
-        playlistDto.setPlaylistSongs(playlist.getPlaylistSongs());
 
         return playlistDto;
     }
@@ -53,17 +50,12 @@ public class PlaylistService {
         return playlistDTOs;
     }
 
-    public List<PlaylistSong> getPlaylistSongs(Long playlistId) {
-        return playlistSongRepository.findByPlaylist_Id(playlistId);
-    }
-
     public void createPlaylist(PlaylistDto playlistDto){
         Playlist playlist = new Playlist();
         playlist.setUser(playlistDto.getUser());
         playlist.setTitle(playlistDto.getTitle());
         playlist.setCreationDate(playlistDto.getCreationDate());
         playlist.setImage(playlistDto.getImage());
-        playlist.setPlaylistSongs(playlistDto.getPlaylistSongs());
 
         playlistRepository.save(playlist);
     }

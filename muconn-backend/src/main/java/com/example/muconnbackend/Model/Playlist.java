@@ -17,8 +17,8 @@ public class Playlist {
     private String title;
     private LocalDate creationDate;
     private String image;
-    @OneToMany(mappedBy = "playlist")
-    private List<PlaylistSong> playlistSongs;
+//    @OneToMany(mappedBy = "playlist")
+//    private List<PlaylistSong> playlistSongs;
 
     public Long getId() {
         return id;
@@ -58,7 +58,7 @@ public class Playlist {
         this.image = image;
     }
 
-    public List<PlaylistSong> getPlaylistSongs() {return playlistSongs;}
-
-    public void setPlaylistSongs(List<PlaylistSong> playlistSongs) {this.playlistSongs = playlistSongs;}
+//    public List<PlaylistSong> getPlaylistSongs() {return playlistSongs;}
+//
+//    public void setPlaylistSongs(List<PlaylistSong> playlistSongs) {this.playlistSongs = playlistSongs;}
 }
