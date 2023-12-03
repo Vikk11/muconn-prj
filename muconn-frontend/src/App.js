@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" element = {<Login/>}/>
         <Route path="/search" element = {<Search/>}/>
         <Route path="/playlists" element = {<Playlists/>}/>
-        <Route path="/playlist" element = {<Playlist/>}/>
+        <Route path="/playlist/:playlistId" element = {<Playlist/>}/>
       </Routes>
     </Router>
     </div>

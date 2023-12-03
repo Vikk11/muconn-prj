@@ -37,7 +37,7 @@ function Home() {
         </div>
         <div className="container-section">
           {userPlaylists.map((playlist) => (
-            <Link to={'/playlist'} className="box">
+            <Link to={`/playlist/${playlist.id}`} className="box" key={playlist.id}>
               <img src={`http://localhost:8080/images/playlists/${playlist.image}`} className="box-img"/>
               <div className="box-text">
                 <h2>{playlist.title}</h2>
@@ -47,7 +47,7 @@ function Home() {
         </div>
       </section>
       <p className="preview-text">Sign up to get access to all features.</p>
-      <RightNav></RightNav>
+      {/* <RightNav></RightNav> */}
     </div>
   )
 }

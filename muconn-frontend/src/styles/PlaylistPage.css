@@ -7,7 +7,7 @@
 
 .playlist-cover{
     margin: auto;
-    width: 15%;
+    width: 30%;
     padding: 10px;
     padding-top: 40px;
 }
@@ -15,12 +15,15 @@
 .playlist-cover img{
     height: 180px;
     width: auto;
+    margin-left:98px;
     border-radius: 10px;
 }
 
 .playlist-cover h2{
     color:white;
     font-weight: bold;
+    text-align: center;
+    padding-right: 10px;
 }
 
 .playlist-buttons-container {
@@ -38,6 +41,10 @@
     border-radius: 25px;
     cursor: pointer;
     width: 45px;
+}
+
+.playlist-buttons-container button:hover{
+    background-color: #8d7cc9;
 }
 
 .playlist-buttons-container i{
