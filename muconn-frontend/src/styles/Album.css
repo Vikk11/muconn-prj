@@ -1,0 +1,50 @@
+.album-info {
+    display: flex;
+    align-items: center;
+    padding-left: 350px;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #393053;
+}
+
+.album-title {
+    font-size: 40px;
+    padding-top:5px;
+    color: white;
+    margin-top: 50px;
+}
+
+.album-artist {
+    font-size: 20px;
+    color: #d9d9d9;
+    margin-top: 30px;
+}
+
+.album-info img {
+    max-width: 220px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.album-info .album-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.album-details{
+    margin-left: 30px;
+}
+
+.albums-container-section{
+    padding: 10px;
+    position: relative;
+    padding-left: 30px;
+    height: 300px;
+    justify-content: flex-start;
+    background-color: #18122b;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    grid-gap: 40px;
+    align-items: center;
+}

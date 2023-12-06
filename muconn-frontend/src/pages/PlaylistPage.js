@@ -32,7 +32,6 @@ function PlaylistPage() {
   }, [playlistId]);
 
   if (playlistDetails === null) {
-    // Display a loading state or return null
     return <p>Loading...</p>;
   }
 

@@ -21,15 +21,35 @@ section {
     margin-top:50px;
 }
 
+.album-section {
+    padding: 60px 10% 60px 21%;
+    margin-top:10px;
+}
+
+.album-section2 {
+    padding: 0px 10% 60px 21%;
+    margin-top:10px;
+}
+
 .section-title{
     color:white;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.small-link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .container-section {
     padding: 10px;
     position: relative;
+    padding-left: 30px;
     height: 300px;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #201a33;
     border-radius: 15px;
     display: grid;

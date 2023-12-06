@@ -51,6 +51,10 @@ tr:hover .options i {
     color: #d9d9d9;
 }
 
+.song-artist:hover{
+    text-decoration: underline;
+}
+
 .song-info img {
     max-width: 50px;
     margin-right: 10px;
