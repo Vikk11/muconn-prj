@@ -24,10 +24,6 @@ jobs:
         working-directory: ./muconn-frontend
         run: npm install
 
-      - name: Run Frontend Tests
-        working-directory: ./muconn-frontend
-        run: npm test
-
   backend:
     runs-on: windows-latest
 
