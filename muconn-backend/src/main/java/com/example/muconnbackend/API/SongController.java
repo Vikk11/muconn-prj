@@ -17,9 +17,15 @@ public class SongController {
     public SongController(SongService songService) {
         this.songService = songService;
     }
-    @GetMapping("/{playlistId}")
+    @GetMapping("/playlist/{playlistId}")
     public ResponseEntity<List<Song>> getSongsByPlaylistId(@PathVariable Long playlistId) {
         List<Song> songs = songService.getSongsByPlaylistId(playlistId);
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
+    @GetMapping("/album/{albumTitle}")
+    public ResponseEntity<List<Song>> getSongsByAlbumTitle(@PathVariable String albumTitle) {
+        List<Song> songs = songService.getSongsByAlbumTitle(albumTitle);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 }

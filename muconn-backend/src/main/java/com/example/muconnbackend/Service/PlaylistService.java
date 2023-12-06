@@ -1,7 +1,6 @@
 package com.example.muconnbackend.Service;
 
 import com.example.muconnbackend.DAL.PlaylistRepository;
-import com.example.muconnbackend.DAL.PlaylistSongRepository;
 import com.example.muconnbackend.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +52,7 @@ public class PlaylistService {
     public void createPlaylist(PlaylistDto playlistDto){
         Playlist playlist = new Playlist();
         playlist.setUser(playlistDto.getUser());
-        playlist.setTitle(playlistDto.getTitle());
+        playlist.setTitle("New Playlist");
         playlist.setCreationDate(playlistDto.getCreationDate());
         playlist.setImage(playlistDto.getImage());
 
@@ -71,4 +70,6 @@ public class PlaylistService {
 
         return playlistDTOs;
     }
+
+    //delete playlist
 }

@@ -10,6 +10,7 @@ public class Artist {
     private Long id;
     private String name;
     private String biography;
+    private String image;
 
     public Long getId() {
         return id;
@@ -34,4 +35,8 @@ public class Artist {
     public void setBiography(String biography) {
         this.biography = biography;
     }
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 }

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class AlbumService {
     private final AlbumRepository albumRepository;
@@ -19,5 +21,13 @@ public class AlbumService {
     public Album getAlbumDetails(Long albumId) {
         return albumRepository.findById(albumId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Album not found with id " + albumId));
+    }
+
+    public Album getAlbumByTitle(String title){
+        return albumRepository.findByTitle(title);
+    }
+
+    public List<Album> getAlbumsByArtist(String artistName){
+        return albumRepository.findByArtistName(artistName);
     }
 }

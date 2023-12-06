@@ -30,4 +30,10 @@ public class PlaylistController {
         PlaylistDto playlist = playlistService.getPlaylistDetails(playlistId, userId);
         return new ResponseEntity<>(playlist, HttpStatus.OK);
     }
+
+    @PostMapping("/createPlaylist")
+    public ResponseEntity<String> createPlaylist(@RequestBody PlaylistDto playlistDto) {
+        playlistService.createPlaylist(playlistDto);
+        return ResponseEntity.ok("Playlist created successfully");
+    }
 }

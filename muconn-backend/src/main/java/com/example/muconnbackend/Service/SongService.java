@@ -27,4 +27,8 @@ public class SongService {
     public List<Song> getSongsByPlaylistId(Long playlistId) {
         return songRepository.findSongsByPlaylistId(playlistId);
     }
+
+    public List<Song> getSongsByAlbumTitle(String albumTitle){
+        return songRepository.findByAlbumTitle(albumTitle);
+    }
 }

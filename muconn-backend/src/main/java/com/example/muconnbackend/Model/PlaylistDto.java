@@ -19,6 +19,10 @@ public class PlaylistDto {
 
     }
 
+    public PlaylistDto(User user, String title, LocalDate creationDate){
+
+    }
+
     public Long getId() {
         return id;
     }
