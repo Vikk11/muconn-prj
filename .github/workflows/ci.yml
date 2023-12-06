@@ -40,7 +40,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build and Test Backend
-        working-directory: ./muconn-backend  
+        working-directory: muconn-backend  
         run: |
           mvn clean install
           mvn test
