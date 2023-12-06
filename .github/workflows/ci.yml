@@ -45,8 +45,10 @@ jobs:
       - name: List Backend Directory Contents
         run: ls -R muconn-backend
 
-      - name: Build and Test Backend
-        working-directory: muconn-backend/muconn-backend 
-        run: |
-          mvn clean install
-          mvn test
+      - name: Build Backend
+        working-directory: muconn-backend/muconn-backend
+        run: mvn clean install
+
+      - name: Test Backend
+        working-directory: muconn-backend/muconn-backend
+        run: mvn test
