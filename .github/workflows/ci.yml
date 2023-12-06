@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: 20.6.1
 
+      - name: List Frontend Directory Contents
+        run: ls -R muconn-frontend
+
       - name: Install Frontend Dependencies
         working-directory: muconn-frontend
         run: npm install
@@ -38,6 +41,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+
+      - name: List Backend Directory Contents
+        run: ls -R muconn-backend
 
       - name: Build and Test Backend
         working-directory: muconn-backend  
