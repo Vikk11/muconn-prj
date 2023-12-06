@@ -21,7 +21,7 @@ jobs:
           node-version: 20.6.1
 
       - name: Install Frontend Dependencies
-        working-directory: ./muconn-frontend
+        working-directory: muconn-frontend
         run: npm install
 
   backend:
@@ -37,6 +37,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '20.6.1'
+          distribution: 'adopt'
 
       - name: Build and Test Backend
         working-directory: ./muconn-backend  
