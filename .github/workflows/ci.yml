@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Backend
         working-directory: muconn-backend/muconn-backend
-        run: mvn clean install -X
+        run: mvn clean package
 
       - name: Test Backend
         working-directory: muconn-backend/muconn-backend
