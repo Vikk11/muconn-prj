@@ -24,7 +24,7 @@ jobs:
         run: ls -R muconn-frontend
 
       - name: Install Frontend Dependencies
-        working-directory: muconn-frontend
+        working-directory: muconn-frontend/muconn-frontend
         run: npm install
 
   backend:
@@ -46,7 +46,7 @@ jobs:
         run: ls -R muconn-backend
 
       - name: Build and Test Backend
-        working-directory: muconn-backend  
+        working-directory: muconn-backend/muconn-backend 
         run: |
           mvn clean install
           mvn test
