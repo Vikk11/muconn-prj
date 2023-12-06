@@ -40,14 +40,15 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'adopt' 
+          cache: maven
 
       - name: List Backend Directory Contents
         run: ls -R muconn-backend
 
       - name: Build Backend
         working-directory: muconn-backend/muconn-backend
-        run: mvn clean package
+        run: mvn clean install
 
       - name: Test Backend
         working-directory: muconn-backend/muconn-backend
