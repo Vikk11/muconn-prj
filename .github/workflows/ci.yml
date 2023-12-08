@@ -36,6 +36,14 @@ jobs:
         with:
           path: muconn-backend
 
+      - name: Debugging
+        run: |
+          echo "Java version:"
+          java -version
+
+          echo "Maven version:"
+          mvn -version
+
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
