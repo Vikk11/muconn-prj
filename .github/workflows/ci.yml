@@ -36,14 +36,6 @@ jobs:
         with:
           path: muconn-backend
 
-      - name: Debugging
-        run: |
-          echo "Java version:"
-          java -version
-
-          echo "Maven version:"
-          mvn -version
-
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
@@ -56,4 +48,4 @@ jobs:
         
       - name: Test Backend
         working-directory: muconn-backend/muconn-backend
-        run: mvn test
+        run: mvn clean test --no-transfer-progress
