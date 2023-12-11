@@ -1,19 +1,24 @@
 package com.example.muconnbackend.API;
 import com.example.muconnbackend.Model.UserDto;
+import com.example.muconnbackend.Service.TokenService;
 import com.example.muconnbackend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
+    private final TokenService tokenService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, TokenService tokenService) {
         this.userService = userService;
+        this.tokenService = tokenService;
     }
 
     @PostMapping("/signup")
@@ -35,9 +40,21 @@ public class UserController {
         boolean loginSuccessful = userService.authenticateUser(userDto);
 
         if(loginSuccessful){
-            return ResponseEntity.ok("Logged in successfully");
+            String token = tokenService.generateToken(userDto.getUsername());
+            return ResponseEntity.ok(Map.of("token", token, "message", "Logged in successfully"));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Log in failed");
+        }
+    }
+
+    @GetMapping("/validate-token")
+    public ResponseEntity<?> validateToken(@RequestParam String token) {
+        boolean isValid = tokenService.validateToken(token);
+
+        if (isValid) {
+            return ResponseEntity.ok("Token is valid");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token is not valid");
         }
     }
 

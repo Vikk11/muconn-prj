@@ -1,10 +1,8 @@
 package com.example.muconnbackend.Service;
 
 import com.example.muconnbackend.DAL.PlaylistRepository;
-import com.example.muconnbackend.DAL.PlaylistSongRepository;
 import com.example.muconnbackend.Model.Playlist;
 import com.example.muconnbackend.Model.PlaylistDto;
-import com.example.muconnbackend.Model.PlaylistSong;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
