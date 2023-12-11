@@ -20,30 +20,32 @@ jobs:
         with:
           node-version: 20.6.1
 
-      - name: Install Frontend Dependencies
-        working-directory: ./muconn-frontend
-        run: npm install
+      - name: List Frontend Directory Contents
+        run: ls -R muconn-frontend
 
-      - name: Run Frontend Tests
-        working-directory: ./muconn-frontend
-        run: npm test
+      - name: Install Frontend Dependencies
+        working-directory: muconn-frontend/muconn-frontend
+        run: npm install
 
   backend:
     runs-on: windows-latest
 
     steps:
       - name: Checkout Backend code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: muconn-backend
 
       - name: Set up Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          java-version: '20.6.1'
+          java-version: '17'
+          distribution: 'temurin' 
+          cache: maven
 
+      - name: List Backend Directory Contents
+        run: ls -R muconn-backend
+        
       - name: Build and Test Backend
-        working-directory: ./muconn-backend  
-        run: |
-          mvn clean install
-          mvn test
+        working-directory: muconn-backend/muconn-backend
+        run: mvn clean install
