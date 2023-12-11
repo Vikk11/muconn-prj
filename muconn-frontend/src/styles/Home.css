@@ -16,9 +16,26 @@
     background-color: #4b406b;
 }
 
-section {
+.default-section {
     padding: 60px 10% 60px 21%;
     margin-top:50px;
+}
+
+.logged-in-section{
+    padding: 60px 10% 0px 21%;
+    margin-top:50px;
+    max-width: 800px;
+    margin-left: 40px;
+}
+
+.loggedin-section{
+    padding: 0 10% 30px 21%;
+    margin-top:50px;
+    max-width: 800px;
+    margin-left: 40px;
+}
+
+.scroll-container {
 }
 
 .album-section {
@@ -56,6 +73,36 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(220px, auto));
     grid-gap: 40px;
     align-items: center;
+}
+
+.logged-in-container-section{
+    padding: 10px;
+    position: relative;
+    padding-left: 30px;
+    height: 300px;
+    justify-content: flex-start;
+    background-color: #201a33;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    grid-gap: 40px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loggedin-container-section{
+    padding: 10px;
+    position: relative;
+    padding-left: 30px;
+    height: 300px;
+    justify-content: flex-start;
+    background-color: #201a33;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    grid-gap: 40px;
+    align-items: center;
+    overflow: hidden;
 }
 
 .box{

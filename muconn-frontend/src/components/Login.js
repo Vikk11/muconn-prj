@@ -27,6 +27,8 @@ function Login() {
     try {
       const { loginUsername, loginPassword } = formData;
       const response = await axios.post('http://localhost:8080/api/users/login', { username: loginUsername, password: loginPassword });
+      const { token } = response.data;
+      localStorage.setItem('token', token);
       setLoginSuccess(true);
       setFormData({
         loginUsername: '',
