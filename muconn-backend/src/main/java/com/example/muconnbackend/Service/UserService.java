@@ -58,7 +58,6 @@ public class UserService {
 
             return true;
         } catch (Exception e) {
-            // Log the exception
             e.printStackTrace();
             return false;
         }
@@ -72,6 +71,7 @@ public class UserService {
         }
 
         UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
         userDto.setPassword(user.getPassword());
 

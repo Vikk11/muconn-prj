@@ -57,25 +57,20 @@ public class UserController {
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.SET_COOKIE, accessTokenCookie.toString())
-                    .body(Map.of("accessToken", accessToken, "refreshToken", refreshToken));
+                    .body(Map.of("accessToken", accessToken, "refreshToken", refreshToken,"username", userDto.getUsername()));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Log in failed");
         }
     }
 
-    @GetMapping("/user/details")
-    public ResponseEntity<?> getUserDetails(Principal principal) {
-        if (principal != null) {
-            String username = principal.getName();
-            UserDto userDetails = userService.findByUsername(username);
+    @GetMapping("/user/details/{username}")
+    public ResponseEntity<?> getUserDetails(@PathVariable String username) {
+        UserDto userDetails = userService.findByUsername(username);
 
-            if (userDetails != null) {
-                return ResponseEntity.ok(userDetails);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-            }
+        if (userDetails != null) {
+            return ResponseEntity.ok(userDetails);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 

@@ -51,12 +51,16 @@ public class PlaylistService {
 
     public void createPlaylist(PlaylistDto playlistDto){
         Playlist playlist = new Playlist();
-        playlist.setUser(playlistDto.getUser());
-        playlist.setTitle(playlistDto.getTitle());
-        playlist.setCreationDate(playlistDto.getCreationDate());
-        playlist.setImage(playlistDto.getImage());
 
-        playlistRepository.save(playlist);
+        User user = playlistDto.getUser();
+        if (user != null) {
+            playlist.setUser(user);
+            playlist.setTitle(playlistDto.getTitle());
+            playlist.setCreationDate(playlistDto.getCreationDate());
+            playlist.setImage("default-cover.png");
+
+            playlistRepository.save(playlist);
+        }
     }
 
     public List<PlaylistDto> getPlaylistsByUserId(Long userId){

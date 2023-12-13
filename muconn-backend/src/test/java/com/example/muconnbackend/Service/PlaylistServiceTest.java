@@ -58,7 +58,6 @@ class PlaylistServiceTest {
         PlaylistDto playlistDto = new PlaylistDto();
         playlistDto.setTitle("Test Playlist");
         playlistDto.setCreationDate(LocalDate.now());
-        playlistDto.setImage("image/path");
 
         playlistService.createPlaylist(playlistDto);
 
