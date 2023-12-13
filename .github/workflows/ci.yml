@@ -63,17 +63,17 @@ jobs:
         uses: docker/setup-buildx-action@v1
         with:
           version: latest
-          
+
       - name: Build and Push Frontend Docker Images
+        working-directory: muconn-frontend/muconn-frontend
         run: |
-          cd D:\a\muconn-prj\muconn-prj\muconn-frontend\muconn-frontend
           docker buildx create --use
           docker build -t muconn-frontend-image .
           docker push muconn-frontend-image
 
       - name: Build and Push Backend Docker Images
+        working-directory: muconn-backend/muconn-backend
         run: |
-          cd D:\a\muconn-prj\muconn-prj\muconn-backend\muconn-backend
           docker buildx create --use
           docker build -t muconn-backend-image .
           docker push muconn-backend-image
