@@ -62,14 +62,12 @@ jobs:
       - name: Build and Push Frontend Docker Images
         working-directory: muconn-frontend
         run: |
-          cd muconn-frontend
           docker build -t muconn-frontend-image .
           docker push muconn-frontend-image
 
       - name: Build and Push Backend Docker Images
         working-directory: muconn-backend
         run: |
-          cd muconn-backend
           docker build -t muconn-backend-image .
           docker push muconn-backend-image
 
