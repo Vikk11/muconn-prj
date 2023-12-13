@@ -49,3 +49,29 @@ jobs:
       - name: Build and Test Backend
         working-directory: muconn-backend/muconn-backend
         run: mvn clean install
+
+  deploy:
+    runs-on: windows-latest
+
+    needs: [frontend, backend]
+
+    steps:
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+        with:
+          dockerfile: Dockerfile
+
+      - name: Build and Push Docker Images
+        run: |
+          docker build -t muconn-frontend-image muconn-frontend/muconn-frontend
+          docker push muconn-frontend-image
+
+          docker build -t muconn-backend-image muconn-backend/muconn-backend
+          docker push muconn-backend-image
+
+      - name: Deploy to Production
+        run: |
+          docker-compose -f docker-compose.yml down --timeout 30
+          docker-compose -f docker-compose.yml pull
+          docker-compose -f docker-compose.yml up -d
+  
