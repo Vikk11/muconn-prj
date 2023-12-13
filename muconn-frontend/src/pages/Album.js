@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import LeftNav from "../components/LeftNav";
+import RightNav from "../components/RightNav";
 import "../styles/Album.css"
 import topHits from "../assets/top-hits.png"
 import AlbumDetails from "../components/AlbumDetails";
+import axios from 'axios';
 
 function Album() {
   const { albumTitle } = useParams();
@@ -11,6 +13,7 @@ function Album() {
   const [albumDetails, setAlbumDetails] = useState(null);
   const [albumSongs, setAlbumSongs] = useState([]);
   const [songCount, setSongCount] = useState(0);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   useEffect(() => {
     const fetchAlbumDetails = async () => {
@@ -29,6 +32,7 @@ function Album() {
 
     fetchAlbumDetails();
     fetchSongCount();
+    checkLoggedIn();
   }, [albumTitle]);
 
   const fetchSongCount = async () => {
@@ -49,6 +53,41 @@ function Album() {
     }
   };
 
+  const checkLoggedIn = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/users/check-auth', { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        await refreshAccessToken();
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
+
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (!refreshToken) {
+        setLoginSuccess(false);
+        return;
+      }
+
+      const response = await axios.post('http://localhost:8080/api/users/refresh-token', { refreshToken: refreshToken}, { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        setLoginSuccess(false);
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
+
   if (albumDetails === null) {
     return <p>Loading...</p>;
   }
@@ -63,6 +102,14 @@ function Album() {
             </div>
         </div>
         <AlbumDetails albumTitle = {albumDetails.title}></AlbumDetails>
+        {loginSuccess ? (
+         <>
+          <RightNav />
+          <button className="profile-btn"><i class='bx bxs-user'></i></button>
+         </>
+        ) : (
+          null
+        )}
     </div>
   )
 }

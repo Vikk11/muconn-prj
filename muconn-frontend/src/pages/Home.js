@@ -4,6 +4,7 @@ import RightNav from "../components/RightNav";
 import topHits from "../assets/top-hits.png"
 import "../styles/Home.css"
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function Home() {
   const [leftNavVisible, setLeftNavVisible] = useState(false);
@@ -26,12 +27,37 @@ function Home() {
     }
   };
 
-  const checkLoggedIn = () => {
-    const token = localStorage.getItem('token');
+  const checkLoggedIn = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/users/check-auth', { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        await refreshAccessToken();
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
 
-    if (token) {
-      setLoginSuccess(true);
-    } else {
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (!refreshToken) {
+        setLoginSuccess(false);
+        return;
+      }
+
+      const response = await axios.post('http://localhost:8080/api/users/refresh-token', { refreshToken: refreshToken}, { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        setLoginSuccess(false);
+      }
+    } catch (error) {
       setLoginSuccess(false);
     }
   };
@@ -43,7 +69,10 @@ function Home() {
       </button>
       <LeftNav visible={leftNavVisible} onClose={() => setLeftNavVisible(false)}/>
       {loginSuccess ? (
-        <RightNav />
+         <>
+          <RightNav />
+          <button className="profile-btn"><i class='bx bxs-user'></i></button>
+         </>
       ) : (
         <Link to="/login" className="login-btn">Log in</Link>
       )}

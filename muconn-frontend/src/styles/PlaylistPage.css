@@ -12,11 +12,29 @@
     padding-top: 40px;
 }
 
+.loggedin-playlist-cover{
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    padding-top: 40px;
+}
+
+.loggedin-playlist-cover img{
+    height: 180px;
+    width: auto;
+    border-radius: 10px;
+}
+
 .playlist-cover img{
     height: 180px;
     width: auto;
     margin-left:98px;
     border-radius: 10px;
+}
+
+.loggedin-playlist-cover h2{
+    color:white;
+    font-weight: bold;
 }
 
 .playlist-cover h2{
@@ -26,6 +44,13 @@
     padding-right: 10px;
 }
 
+.loggedin-playlist-buttons-container{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-left: 280px;
+}
+
 .playlist-buttons-container {
     display: flex;
     align-items: center;
@@ -33,7 +58,8 @@
     margin-left: 350px;
 }
 
-.playlist-buttons-container button {
+.playlist-buttons-container button,
+.loggedin-playlist-buttons-container button {
     padding: 10px;
     margin-right: 10px;
     background-color: #b1a1ed;
@@ -43,11 +69,13 @@
     width: 45px;
 }
 
-.playlist-buttons-container button:hover{
+.playlist-buttons-container button:hover,
+.loggedin-playlist-buttons-container button:hover{
     background-color: #8d7cc9;
 }
 
-.playlist-buttons-container i{
+.playlist-buttons-container i,
+.loggedin-playlist-buttons-container i{
     font-size: 24px;
     font-weight: bold;
     color:#18122b ;
@@ -55,6 +83,19 @@
 
 .wide-text-box {
     width: 800px;
+    padding: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    border:none;
+    outline: none; 
+    border-radius: 15px;
+    background-color: #393053;
+    color: white;
+    padding-left: 20px;
+}
+
+.loggedin-wide-text-box{
+    width: 720px;
     padding: 10px;
     margin-right: 10px;
     box-sizing: border-box;

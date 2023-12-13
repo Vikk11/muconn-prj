@@ -8,6 +8,7 @@ import Playlist from "./pages/PlaylistPage";
 import Artist from "./pages/Artist";
 import Albums from "./pages/AlbumsPage";
 import Album from "./pages/Album";
+import Profile from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/artist/:artistId" element = {<Artist/>}/>
         <Route path="/albums/:artistName" element = {<Albums/>}/>
         <Route path="/album/:albumTitle" element = {<Album/>}/>
+        <Route path ="/profile" element = {<Profile/>}/>
       </Routes>
     </Router>
     </div>

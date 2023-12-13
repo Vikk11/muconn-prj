@@ -144,6 +144,30 @@
     padding-left: 25px;
 }
 
+.profile-btn{
+    position: absolute;
+    top: 30px;
+    right: 300px;
+    width: 54px;
+    height: 53px;
+    border-radius: 25px;
+    color:white;
+    background-color: #393053;
+    border: none;
+    cursor: pointer;
+    font-size: 19px;
+    text-decoration: none;
+}
+
+.profile-btn i{
+    font-size: 30px;
+    color: #201a33;
+}
+
+.profile-btn:hover{
+    background-color: #4b406b;
+}
+
 @media (max-width: 768px) {
     .login-btn{
         float: none;

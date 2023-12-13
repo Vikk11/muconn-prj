@@ -48,3 +48,18 @@
     grid-gap: 40px;
     align-items: center;
 }
+
+.loggedin-albums-container-section{
+    padding: 10px;
+    position: relative;
+    padding-left: 30px;
+    height: 300px;
+    justify-content: flex-start;
+    background-color: #18122b;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    grid-gap: 40px;
+    align-items: center;
+    overflow: hidden;
+}

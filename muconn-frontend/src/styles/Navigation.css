@@ -121,6 +121,35 @@
     font-size: 13px;
 }
 
+.login-alert {
+    position: relative;
+    top: 20px;
+    background-color: #80779b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .login-alert p {
+    margin: 0;
+    color: white; 
+  }
+  
+  .login-alert button {
+    background-color: transparent;
+    padding-left:10px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .login-alert button:hover {
+    color: #40375b;
+  }
+
 @media (max-width: 768px) {
     .leftSideNav {
       display: none; 

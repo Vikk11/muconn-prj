@@ -5,6 +5,13 @@ table {
     margin-left:320px;
 }
 
+.loggedin-table{
+    width: 58%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left:320px;
+}
+
 th, td {
     border-bottom: 1px solid #393053;
     padding: 8px;
@@ -51,7 +58,14 @@ tr:hover .options i {
     color: #d9d9d9;
 }
 
-.song-artist:hover{
+.song-album{
+    color: #d9d9d9;
+}
+
+
+
+.song-artist:hover,
+.song-album:hover{
     text-decoration: underline;
 }
 
@@ -67,6 +81,10 @@ tr:hover .options i {
 
 .line-separator {
     border-bottom: 1px solid #393053;
+}
+
+.line-separator a{
+    text-decoration: none;
 }
 
 @media (max-width: 767px) {

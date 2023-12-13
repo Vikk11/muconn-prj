@@ -11,7 +11,7 @@ function RightNav() {
   };
   return (
     <div className="rightSideNav">
-      <button><i class='bx bxs-user'></i></button>
+      <button><i class='bx bxs-message-dots'></i></button>
       <button><i class='bx bxs-bell' ></i></button>
       <button onClick={handleLogout}><i class='bx bx-log-in' ></i></button>
     </div>

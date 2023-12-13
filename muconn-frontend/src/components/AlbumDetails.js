@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import "../styles/Album.css";
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function AlbumDetails({albumTitle}) {
   const [albumSongs, setAlbumSongs] = useState([]);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   useEffect(() => {
     fetchSongs();
+    checkLoggedIn();
   }, []);
 
   const fetchSongs = async () => {
@@ -20,9 +23,44 @@ function AlbumDetails({albumTitle}) {
     }
   };
 
+  const checkLoggedIn = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/users/check-auth', { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        await refreshAccessToken();
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
+
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (!refreshToken) {
+        setLoginSuccess(false);
+        return;
+      }
+
+      const response = await axios.post('http://localhost:8080/api/users/refresh-token', { refreshToken: refreshToken}, { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        setLoginSuccess(false);
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
+
   return (
     <div>
-      <table>
+      <table className={loginSuccess ? "loggedin-table" : null}>
       <thead>
       <tr className="playlist-headers">
         <th>#</th>

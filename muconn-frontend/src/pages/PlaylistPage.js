@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "../styles/PlaylistPage.css";
 import LeftNav from "../components/LeftNav";
+import RightNav from "../components/RightNav";
 import PlaylistImg from "../assets/top-hits.png";
 import PlaylistSong from "../components/PlaylistSong";
+import axios from 'axios';
 
 function PlaylistPage() {
   const [leftNavVisible, setLeftNavVisible] = useState(false);
   const { playlistId } = useParams();
   console.log('Playlist ID:', playlistId);
   const [playlistDetails, setPlaylistDetails] = useState(null);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   useEffect(() => {
     const fetchPlaylistDetails = async () => {
@@ -29,7 +32,43 @@ function PlaylistPage() {
     };
 
     fetchPlaylistDetails();
+    checkLoggedIn();
   }, [playlistId]);
+
+  const checkLoggedIn = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/users/check-auth', { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        await refreshAccessToken();
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
+
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (!refreshToken) {
+        setLoginSuccess(false);
+        return;
+      }
+
+      const response = await axios.post('http://localhost:8080/api/users/refresh-token', { refreshToken: refreshToken}, { withCredentials: true });
+  
+      if (response.status === 200) {
+        setLoginSuccess(true);
+      } else {
+        setLoginSuccess(false);
+      }
+    } catch (error) {
+      setLoginSuccess(false);
+    }
+  };
 
   if (playlistDetails === null) {
     return <p>Loading...</p>;
@@ -42,21 +81,29 @@ function PlaylistPage() {
       </button>
         <LeftNav visible={leftNavVisible} onClose={() => setLeftNavVisible(false)}></LeftNav>
         <div className = "playlist-background">
-            <div className="playlist-cover">
+            <div className={loginSuccess ? "loggedin-playlist-cover" : "playlist-cover"}>
                 <img src={`http://localhost:8080/images/playlists/${playlistDetails.image}`} />
                 <h2>{playlistDetails.title}</h2>
             </div>  
         </div>
-        <div className="playlist-buttons-container">
+        <div className={loginSuccess ? "loggedin-playlist-buttons-container" : "playlist-buttons-container"}>
           <button><i class='bx bx-play'></i></button>
           <button><i class='bx bx-shuffle' ></i></button>
           <button><i class='bx bx-sort-alt-2' ></i></button>
-          <input type="text" class="wide-text-box" placeholder="Search in playlist"/>
+          <input type="text" className={loginSuccess ? "loggedin-wide-text-box" : "wide-text-box"} placeholder="Search in playlist"/>
           <button><i class='bx bx-search' ></i></button>
         </div> 
         <div className="playlist-songs-container">
           <PlaylistSong playlistId={playlistDetails.id}></PlaylistSong>
         </div>
+        {loginSuccess ? (
+         <>
+          <RightNav />
+          <button className="profile-btn"><i class='bx bxs-user'></i></button>
+         </>
+        ) : (
+          null
+        )}
     </div>
   )
 }
