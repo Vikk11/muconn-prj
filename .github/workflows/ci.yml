@@ -63,17 +63,19 @@ jobs:
           
       - name: Set up Docker
         uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: Dockerfile
 
-      - name: Build and Push Docker Images
+      - name: Build and Push Frontend Docker Images
         run: |
+          cd muconn-frontend/muconn-frontend
           docker buildx create --use
-          docker build -t muconn-frontend-image muconn-frontend/muconn-frontend
+          docker build -t muconn-frontend-image .
           docker push muconn-frontend-image
 
-          docker build -t muconn-backend-image muconn-backend/muconn-backend
+      - name: Build and Push Backend Docker Images
+        run: |
+          cd muconn-backend/muconn-backend
+          docker buildx create --use
+          docker build -t muconn-backend-image .
           docker push muconn-backend-image
 
       - name: Deploy to Production
