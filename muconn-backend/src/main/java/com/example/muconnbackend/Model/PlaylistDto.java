@@ -19,7 +19,7 @@ public class PlaylistDto {
 
     }
 
-    public PlaylistDto(User user, String title, LocalDate creationDate){
+    public PlaylistDto(User user, String title){
 
     }
 

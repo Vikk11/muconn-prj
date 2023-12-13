@@ -8,13 +8,14 @@ import java.security.Key;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class TokenService {
     private String secretKey;
-
     public String generateToken(String username) {
-        long expirationTimeInMs = 3600000;
+        long expirationTimeInMs = Long.MAX_VALUE;
 
         if (secretKey == null) {
             secretKey = generateRandomSecretKey();
@@ -31,6 +32,54 @@ public class TokenService {
                 .setExpiration(expirationDate)
                 .signWith(key)
                 .compact();
+    }
+
+    public String getUsernameFromToken(String token) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(secretKey.getBytes())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            return claims.getSubject();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public Map<String, String> generateTokens(String username) {
+        long accessTokenExpirationTimeInMs = 3600000;
+        long refreshTokenExpirationTimeInMs = 604800000;
+
+        if (secretKey == null) {
+            secretKey = generateRandomSecretKey();
+        }
+
+        Date now = new Date();
+        Date accessTokenExpirationDate = new Date(now.getTime() + accessTokenExpirationTimeInMs);
+        Date refreshTokenExpirationDate = new Date(now.getTime() + refreshTokenExpirationTimeInMs);
+
+        Key key = new SecretKeySpec(secretKey.getBytes(), SignatureAlgorithm.HS512.getJcaName());
+
+        String accessToken = Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(now)
+                .setExpiration(accessTokenExpirationDate)
+                .signWith(key)
+                .compact();
+
+        String refreshToken = Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(now)
+                .setExpiration(refreshTokenExpirationDate)
+                .signWith(key)
+                .compact();
+
+        Map<String, String> tokens = new HashMap<>();
+        tokens.put("accessToken", accessToken);
+        tokens.put("refreshToken", refreshToken);
+
+        return tokens;
     }
 
     public String generateRandomSecretKey() {

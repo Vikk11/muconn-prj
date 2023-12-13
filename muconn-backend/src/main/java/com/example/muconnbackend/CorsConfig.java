@@ -20,6 +20,7 @@ public class CorsConfig {
         config.addAllowedMethod("PUT");
 
         config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter((CorsConfigurationSource) source);

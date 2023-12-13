@@ -52,7 +52,7 @@ public class PlaylistService {
     public void createPlaylist(PlaylistDto playlistDto){
         Playlist playlist = new Playlist();
         playlist.setUser(playlistDto.getUser());
-        playlist.setTitle("New Playlist");
+        playlist.setTitle(playlistDto.getTitle());
         playlist.setCreationDate(playlistDto.getCreationDate());
         playlist.setImage(playlistDto.getImage());
 
