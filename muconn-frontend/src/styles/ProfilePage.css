@@ -1,0 +1,32 @@
+.profile-container{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #393053;
+}
+
+.profile-container img{
+    max-width: 250px;
+    margin-left: 400px;
+    border-radius: 120px;
+}
+
+.profile-container h1{
+    margin-left: 50px;
+    color: white;
+    font-size: 40px;
+}
+
+.profile-container button{
+    width: 50px;
+    margin-left: 20px;
+    background-color: #18122b;
+    border:none;
+    cursor: pointer;
+}
+
+.profile-container i{
+    color: #635985;
+    font-size: 40px;
+}

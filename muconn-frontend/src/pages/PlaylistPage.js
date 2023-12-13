@@ -3,16 +3,17 @@ import { useParams } from 'react-router-dom';
 import "../styles/PlaylistPage.css";
 import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
-import PlaylistImg from "../assets/top-hits.png";
 import PlaylistSong from "../components/PlaylistSong";
-import axios from 'axios';
+import useAuth from '../hooks/useAuth'; 
+import { useNavigate } from 'react-router-dom';
 
 function PlaylistPage() {
   const [leftNavVisible, setLeftNavVisible] = useState(false);
   const { playlistId } = useParams();
   console.log('Playlist ID:', playlistId);
   const [playlistDetails, setPlaylistDetails] = useState(null);
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const { loginSuccess } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlaylistDetails = async () => {
@@ -32,43 +33,12 @@ function PlaylistPage() {
     };
 
     fetchPlaylistDetails();
-    checkLoggedIn();
   }, [playlistId]);
 
-  const checkLoggedIn = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/users/check-auth', { withCredentials: true });
-  
-      if (response.status === 200) {
-        setLoginSuccess(true);
-      } else {
-        await refreshAccessToken();
-      }
-    } catch (error) {
-      setLoginSuccess(false);
-    }
+  const handleProfileButtonClick = () => {
+    navigate('/profile');
   };
 
-  const refreshAccessToken = async () => {
-    try {
-      const refreshToken = localStorage.getItem('refreshToken');
-
-      if (!refreshToken) {
-        setLoginSuccess(false);
-        return;
-      }
-
-      const response = await axios.post('http://localhost:8080/api/users/refresh-token', { refreshToken: refreshToken}, { withCredentials: true });
-  
-      if (response.status === 200) {
-        setLoginSuccess(true);
-      } else {
-        setLoginSuccess(false);
-      }
-    } catch (error) {
-      setLoginSuccess(false);
-    }
-  };
 
   if (playlistDetails === null) {
     return <p>Loading...</p>;
@@ -99,7 +69,7 @@ function PlaylistPage() {
         {loginSuccess ? (
          <>
           <RightNav />
-          <button className="profile-btn"><i class='bx bxs-user'></i></button>
+          <button className="profile-btn" onClick={handleProfileButtonClick}><i class='bx bxs-user'></i></button>
          </>
         ) : (
           null

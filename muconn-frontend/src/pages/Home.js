@@ -4,17 +4,45 @@ import RightNav from "../components/RightNav";
 import topHits from "../assets/top-hits.png"
 import "../styles/Home.css"
 import {Link} from 'react-router-dom';
+import useAuth from '../hooks/useAuth'; 
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [leftNavVisible, setLeftNavVisible] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState([]);
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [loggedUserPlaylists, setLoggedUserPlaylists] = useState([]);
+  const { loginSuccess } = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUserPlaylists();
-    checkLoggedIn();
+    fetchUserDetails();
   }, []);
+
+  useEffect(() => {
+    fetchLoggedUserPlaylists();
+  }, [userDetails]);
+
+  const fetchUserDetails = async () => {
+    try {
+      const username = localStorage.getItem('loggedInUser');
+  
+      if (!username) {
+        return;
+      }
+  
+      const response = await axios.get(`http://localhost:8080/api/users/user/details/${username}`, {
+        withCredentials: true,
+      });
+  
+      setUserDetails(response.data);
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+      setUserDetails(null);
+    }
+  };
 
   const fetchUserPlaylists = async () => {
     try {
@@ -27,40 +55,21 @@ function Home() {
     }
   };
 
-  const checkLoggedIn = async () => {
+  const fetchLoggedUserPlaylists = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/users/check-auth', { withCredentials: true });
-  
-      if (response.status === 200) {
-        setLoginSuccess(true);
-      } else {
-        await refreshAccessToken();
-      }
+      const response = await fetch(`http://localhost:8080/api/playlists/user/${userDetails.id}`); 
+      const data = await response.json();
+
+      setLoggedUserPlaylists(data);
     } catch (error) {
-      setLoginSuccess(false);
+      console.error('Error fetching user playlists:', error);
     }
   };
 
-  const refreshAccessToken = async () => {
-    try {
-      const refreshToken = localStorage.getItem('refreshToken');
-
-      if (!refreshToken) {
-        setLoginSuccess(false);
-        return;
-      }
-
-      const response = await axios.post('http://localhost:8080/api/users/refresh-token', { refreshToken: refreshToken}, { withCredentials: true });
-  
-      if (response.status === 200) {
-        setLoginSuccess(true);
-      } else {
-        setLoginSuccess(false);
-      }
-    } catch (error) {
-      setLoginSuccess(false);
-    }
+  const handleProfileButtonClick = () => {
+    navigate('/profile');
   };
+
 
   return (
     <div>
@@ -71,7 +80,7 @@ function Home() {
       {loginSuccess ? (
          <>
           <RightNav />
-          <button className="profile-btn"><i class='bx bxs-user'></i></button>
+          <button className="profile-btn" onClick={handleProfileButtonClick}><i class='bx bxs-user'></i></button>
          </>
       ) : (
         <Link to="/login" className="login-btn">Log in</Link>
@@ -106,19 +115,20 @@ function Home() {
         </div>
         <div className="scroll-container">
           <div className={loginSuccess ? "loggedin-container-section" : "container-section"}>
-            <Link to={"/"} className="box">
-              <img src={topHits} className="box-img"/>
-              <div className="box-text">
-                <h2>Playlist 1</h2>
-              </div>
-            </Link>
+            {loggedUserPlaylists.map((userPlaylist) => (
+              <Link to={`/user/playlist/${userPlaylist.id}`} className="box" key={userPlaylist.id}>
+                <img src={`http://localhost:8080/images/playlists/${userPlaylist.image}`} className="box-img"/>
+                <div className="box-text">
+                  <h2>{userPlaylist.title}</h2>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
       ) : (
         <p className="preview-text">Sign up to get access to all features.</p>
       )}
-      {/* <RightNav></RightNav> */}
     </div>
   )
 }

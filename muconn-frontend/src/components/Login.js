@@ -27,7 +27,8 @@ function Login() {
     try {
       const { loginUsername, loginPassword } = formData;
       const response = await axios.post('http://localhost:8080/api/users/login', { username: loginUsername, password: loginPassword }, { withCredentials: true });
-      
+      const { username } = response.data;
+      localStorage.setItem('loggedInUser', username);
       const { refreshToken } = response.data;
       localStorage.setItem('refreshToken', refreshToken);
 
