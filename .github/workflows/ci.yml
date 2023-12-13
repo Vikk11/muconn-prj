@@ -66,14 +66,14 @@ jobs:
           
       - name: Build and Push Frontend Docker Images
         run: |
-          cd muconn-frontend/muconn-frontend
+          cd D:\a\muconn-prj\muconn-prj\muconn-frontend\muconn-frontend
           docker buildx create --use
           docker build -t muconn-frontend-image .
           docker push muconn-frontend-image
 
       - name: Build and Push Backend Docker Images
         run: |
-          cd muconn-backend/muconn-backend
+          cd D:\a\muconn-prj\muconn-prj\muconn-backend\muconn-backend
           docker buildx create --use
           docker build -t muconn-backend-image .
           docker push muconn-backend-image
