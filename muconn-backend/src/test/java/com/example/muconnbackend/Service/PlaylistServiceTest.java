@@ -3,6 +3,7 @@ package com.example.muconnbackend.Service;
 import com.example.muconnbackend.DAL.PlaylistRepository;
 import com.example.muconnbackend.Model.Playlist;
 import com.example.muconnbackend.Model.PlaylistDto;
+import com.example.muconnbackend.Model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +59,9 @@ class PlaylistServiceTest {
         PlaylistDto playlistDto = new PlaylistDto();
         playlistDto.setTitle("Test Playlist");
         playlistDto.setCreationDate(LocalDate.now());
+
+        User user = new User();
+        playlistDto.setUser(user);
 
         playlistService.createPlaylist(playlistDto);
 
