@@ -3,12 +3,12 @@ services:
   spring-boot-app:
     build:
       context: .
-      dockerfile: ./muconn-backend/Dockerfile-backend
+      dockerfile: muconn-backend/Dockerfile-backend
     ports:
       - "8080:8080"
   react-app:
     build:
       context: .
-      dockerfile: ./muconn-frontend/Dockerfile-frontend
+      dockerfile: muconn-frontend/Dockerfile-frontend
     ports:
       - "3000:3000"
