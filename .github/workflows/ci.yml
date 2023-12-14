@@ -62,15 +62,17 @@ jobs:
       - name: Build and Push Frontend Docker Images
         working-directory: muconn-frontend
         run: |
-          docker build -t muconn-frontend-image -f Dockerfile-frontend .
-          docker push muconn-frontend-image
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/muconn-frontend-image -f Dockerfile-frontend .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/muconn-frontend-image
 
       - name: Build and Push Backend Docker Images
         working-directory: muconn-backend
         run: |
-          docker build -t muconn-backend-image -f Dockerfile-backend .
-          docker push muconn-backend-image
-
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/muconn-backend-image -f Dockerfile-backend .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/muconn-backend-image
+          
       - name: Deploy to Production
         run: |
           docker-compose -f docker-compose.yml down --timeout 30
