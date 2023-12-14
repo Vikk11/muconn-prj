@@ -1,0 +1,6 @@
+com\example\muconnbackend\Service\SongServiceTest.class
+com\example\muconnbackend\MuconnBackendApplicationTests.class
+com\example\muconnbackend\Service\AlbumServiceTest.class
+com\example\muconnbackend\Service\ArtistServiceTest.class
+com\example\muconnbackend\Service\UserServiceTest.class
+com\example\muconnbackend\Service\PlaylistServiceTest.class
