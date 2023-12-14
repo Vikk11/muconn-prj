@@ -75,7 +75,7 @@ jobs:
           
       - name: Deploy to Production
         run: |
-          docker-compose -f docker-compose.yml down --timeout 30
           docker-compose -f docker-compose.yml pull
+          docker-compose -f docker-compose.yml down --timeout 30
           docker-compose -f docker-compose.yml up -d
   
