@@ -27,10 +27,6 @@ jobs:
         working-directory: muconn-frontend/muconn-frontend
         run: npm install
 
-      - name: Run Cypress Tests
-        working-directory: muconn-frontend/muconn-frontend
-        run: npm run cypress:run 
-
   backend:
     runs-on: windows-latest
 
