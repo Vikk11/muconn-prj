@@ -66,6 +66,11 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/muconn-frontend-image
 
+      - name: Copy files to build context
+        run: |
+          mkdir tmp_build_context
+          cp -r muconn-backend/target tmp_build_context
+          
       - name: Build and Push Backend Docker Images
         working-directory: muconn-backend
         run: |
