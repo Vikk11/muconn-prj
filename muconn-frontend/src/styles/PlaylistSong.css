@@ -47,6 +47,15 @@ tr:hover .options i {
     font-weight: bold;
 }
 
+tr:hover .options-btn{
+    background-color: #2e2647;
+}
+
+.options-btn{
+    background-color: #18122b;
+    border:none;
+}
+
 .song-info {
     display: flex;
     align-items: center;

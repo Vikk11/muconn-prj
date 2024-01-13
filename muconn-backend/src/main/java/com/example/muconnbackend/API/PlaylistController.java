@@ -36,4 +36,10 @@ public class PlaylistController {
         return ResponseEntity.ok("Playlist created successfully");
     }
 
+    @PostMapping("/playlist/{playlistId}/addSong/{songId}")
+    public ResponseEntity<String> addSongToPlaylist(@PathVariable Long playlistId, @PathVariable Long songId) {
+        playlistService.addSongToPlaylist(playlistId, songId);
+        return ResponseEntity.ok("Song added to playlist successfully");
+    }
+
 }

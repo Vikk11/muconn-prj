@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import "../styles/PlaylistSong.css";
 import {Link} from 'react-router-dom';
-import useAuth from '../hooks/useAuth'; 
+import useAuth from '../hooks/useAuth';
+import AddSongPopup from '../components/AddSongPopup';
 
 function PlaylistSong({ playlistId }) {
   const [playlistSongs, setPlaylistSongs] = useState([]);
   const { loginSuccess } = useAuth();
+  const [showPopup, setShowPopup] = useState(false);
+  const[songId, setSongId] = useState(null)
+
 
   useEffect(() => {
     fetchSongs();
@@ -20,6 +24,16 @@ function PlaylistSong({ playlistId }) {
     } catch (error) {
       console.error('Error fetching user playlists:', error);
     }
+  };
+
+  const openAddSongPopup = (songId) => {
+    setSongId(songId);
+    setShowPopup(true);
+  };
+
+  const closeAddSongPopup = () => {
+    setSongId(null);
+    setShowPopup(false);
   };
 
   return (
@@ -51,9 +65,22 @@ function PlaylistSong({ playlistId }) {
               </td>
               <td><Link to={`/album/${song.album.title}`}><div className="song-album">{song.album.title}</div></Link></td>
               <td>Oct 11, 2023</td>
-              <td className="heart"><i class='bx bx-heart'></i></td>
+              {loginSuccess ? (
+              <>
+                <td className="heart"><i class='bx bx-heart'></i></td>
+              </>
+              ) : (
+                <td></td>
+              )}
               <td>{song.duration}</td>
-              <td className="options"><i class='bx bx-dots-vertical-rounded' ></i></td>
+              {loginSuccess ? (
+              <>
+                <td className="options"><button className="options-btn" onClick={() => openAddSongPopup(song.id)}><i class='bx bx-dots-vertical-rounded'></i></button></td>
+                <AddSongPopup isOpen={showPopup} onClose={closeAddSongPopup} songId={songId}></AddSongPopup>
+              </>
+              ) : (
+                <td></td>
+              )}
             </tr>
           ))}
         </tbody>

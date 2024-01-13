@@ -106,6 +106,60 @@
     padding:4px 8px;
 }
 
+.addsong-close-btn{
+    position: absolute;
+    margin-left:165px;
+    padding-bottom: 30px;
+    cursor: pointer;
+    background-color: #443c68;
+    color: whitesmoke;
+    font-size: 12px;
+    border: none;
+    border-radius: 25px;
+    padding:4px 8px;
+}
+
+.addsong-popup-message{
+    color: white;
+    font-size:17px;
+    margin-bottom: 38px;
+    font-weight: 400;
+}
+
+.popup-add{
+    background-color: #18122b;
+    padding: 20px 50px 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.playlist-btn{
+    background-color: #443c68;
+    border: 1px solid #373055; 
+    color: white; 
+    padding: 10px 24px; 
+    cursor: pointer; 
+    width: 100%; 
+    display: block;
+}
+
+.playlist-btn:hover{
+    background-color: #373055;
+}
+
+.confimation-popup{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+
 @media screen and (max-width: 768px) {
     .popup-confirmation {
       width: 90%;

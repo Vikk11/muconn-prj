@@ -44,7 +44,9 @@ function UserPlaylists() {
   }, []);
 
   useEffect(() => {
-    fetchUserPlaylists();
+    if(userDetails){
+      fetchUserPlaylists();
+    }
   }, [userDetails]);
 
   return (
@@ -52,13 +54,13 @@ function UserPlaylists() {
         <section className={loginSuccess ? "loggedin-section" : "album-section"}>
         <div className="section-title">
           <h1>Playlists</h1>
-          <Link to={"/"} className="small-link">
+          <Link to={"/playlists"} className="small-link">
             See more
           </Link>
         </div>
         <div className={loginSuccess ? "logged-in-container-section" : "container-section"}>
             {userPlaylists.map((playlist) => (
-              <Link to={`/playlist/${playlist.id}`} className="box" key={playlist.id}>
+              <Link to={`/user/playlist/${playlist.id}`} className="box" key={playlist.id}>
                 <img src={`http://localhost:8080/images/playlists/${playlist.image}`} className="box-img"/>
                 <div className="box-text">
                   <h2>{playlist.title}</h2>

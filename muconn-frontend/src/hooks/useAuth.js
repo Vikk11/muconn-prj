@@ -41,8 +41,12 @@ const useAuth = () => {
     };
 
     useEffect(() => {
-        checkLoggedIn();
-      }, []);
+      checkLoggedIn();
+    }, []);
+
+    useEffect(() => {
+      checkLoggedIn();
+    }, [loginSuccess]);
   
     return { loginSuccess };
   };

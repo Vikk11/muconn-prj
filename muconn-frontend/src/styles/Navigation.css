@@ -22,7 +22,8 @@
 }
 
 .create-playlist-btn{
-    padding: 8px 8px 8px 32px;
+    padding: 8px 30px 8px 0px;
+    width: 260px;
     text-decoration: none;
     font-size: 19px;
     background-color: #201a33;
@@ -32,6 +33,17 @@
     position: relative;
     border:none;
     cursor: pointer;
+    border-bottom: 1px solid #393053;
+}
+
+.playlist-link{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 11px;
+    color: #d9d9d9;
+    display: block;
+    transition: 0.3s;
+    position: relative;
 }
 
 .create-playlist-btn:hover,

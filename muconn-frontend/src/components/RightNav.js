@@ -6,8 +6,9 @@ function RightNav() {
   const navigate = useNavigate();
   
   const handleLogout = () => {
-    localStorage.removeItem('token');  
-    navigate('/'); 
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('loggedInUser');  
+    navigate('/login'); 
   };
   return (
     <div className="rightSideNav">

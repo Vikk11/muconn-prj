@@ -55,7 +55,7 @@ function UserPlaylistPage() {
 
       fetchUserDetails();
       fetchPlaylistDetails();
-    }, [playlistId]);
+    }, [playlistId, userDetails]);
 
     
     const handleProfileButtonClick = () => {
