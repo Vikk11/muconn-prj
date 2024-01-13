@@ -2,6 +2,7 @@ package com.example.muconnbackend.Service;
 
 import com.example.muconnbackend.DAL.PlaylistRepository;
 import com.example.muconnbackend.Model.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +74,11 @@ public class PlaylistService {
         }
 
         return playlistDTOs;
+    }
+
+    @Transactional
+    public void addSongToPlaylist(Long playlistId, Long songId) {
+        playlistRepository.addSongToPlaylist(playlistId, songId);
     }
 
     //delete playlist

@@ -24,7 +24,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/users/signup","/api/users/login", "/api/playlists/user/{userId}", "/images/playlists/**", "/images/albums/**", "/api/playlists/user/{userId}/playlist/{playlistId}", "/api/songs/playlist/{playlistId}", "/api/albums/{albumTitle}", "/api/artists/{artistId}", "/api/albums/artist/{artistName}", "/api/songs/album/{albumTitle}", "/images/artists/**", "/api/users/check-auth", "/api/users/user/details/{username}", "/api/users/refresh-token", "/api/playlists/createPlaylist").permitAll()
+                                .requestMatchers("/api/users/signup","/api/users/login", "/api/playlists/user/{userId}", "/images/playlists/**", "/images/albums/**", "/api/playlists/user/{userId}/playlist/{playlistId}", "/api/songs/playlist/{playlistId}", "/api/albums/{albumTitle}", "/api/artists/{artistId}", "/api/albums/artist/{artistName}", "/api/songs/album/{albumTitle}", "/images/artists/**", "/api/users/check-auth", "/api/users/user/details/{username}", "/api/users/refresh-token", "/api/playlists/createPlaylist", "/api/playlists/playlist/{playlistId}/addSong/{songId}").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
