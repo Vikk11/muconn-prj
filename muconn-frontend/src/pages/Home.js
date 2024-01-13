@@ -16,28 +16,21 @@ function Home() {
   const [userDetails, setUserDetails] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchUserPlaylists();
-    fetchUserDetails();
-  }, []);
-
-  useEffect(() => {
-    fetchLoggedUserPlaylists();
-  }, [userDetails]);
-
   const fetchUserDetails = async () => {
     try {
       const username = localStorage.getItem('loggedInUser');
-  
+      
       if (!username) {
-        return;
+          return;
       }
-  
+    
       const response = await axios.get(`http://localhost:8080/api/users/user/details/${username}`, {
         withCredentials: true,
       });
-  
+    
       setUserDetails(response.data);
+      
+      await fetchLoggedUserPlaylists(response.data.id);
     } catch (error) {
       console.error('Error fetching user details:', error);
       setUserDetails(null);
@@ -55,9 +48,9 @@ function Home() {
     }
   };
 
-  const fetchLoggedUserPlaylists = async () => {
+  const fetchLoggedUserPlaylists = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/playlists/user/${userDetails.id}`); 
+      const response = await fetch(`http://localhost:8080/api/playlists/user/${userId}`); 
       const data = await response.json();
 
       setLoggedUserPlaylists(data);
@@ -65,6 +58,19 @@ function Home() {
       console.error('Error fetching user playlists:', error);
     }
   };
+
+  useEffect(() => {
+    console.log('fetchUserDetails useEffect');
+    fetchUserPlaylists();
+    fetchUserDetails();
+  }, []);
+
+  // useEffect(() => {
+  //   if (userDetails){
+  //     console.log('fetchLoggedUserPlaylists useEffect');
+  //     fetchLoggedUserPlaylists();
+  //   }
+  // }, [userDetails]);
 
   const handleProfileButtonClick = () => {
     navigate('/profile');
@@ -109,7 +115,7 @@ function Home() {
         <section className={loginSuccess ? "loggedin-section" : "default-section"}>
         <div className="section-title">
           <h1>Your Playlists</h1>
-          <Link to={"/"} className="small-link">
+          <Link to={"/playlists"} className="small-link">
             See more
           </Link>
         </div>

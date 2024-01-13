@@ -56,6 +56,27 @@
     padding-left: 20px;
 }
 
+.option-buttons{
+    padding-left: 480px;
+}
+
+.option-buttons button{
+    width: 80px;
+    height: 48px; 
+    margin-left: 32px; 
+    background-color: #625588; 
+    color: #18122b;
+    font-weight:500;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option-buttons button:hover{
+    background-color: #b1a1ed;
+}
+
 .recent-searches-container h2{
     color: white;
     margin-left: 350px;

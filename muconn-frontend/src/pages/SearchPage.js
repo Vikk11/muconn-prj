@@ -20,15 +20,15 @@ function SearchPage() {
       <LeftNav></LeftNav>
       <div className="search-buttons-container">
           <input type="text" className="search-box" placeholder="Search..."/>
-          <select name="searchOptions">
-                <option value="song">Song</option>
-                <option value="artist">Artist</option>
-                <option value="user">User</option>
-                <option value="user">Playlist</option>
-                <option value="user">Album</option>
-          </select>
           <button><i class='bx bx-search' ></i></button>
       </div> 
+      <div className ="option-buttons">
+        <button>Song</button>
+        <button>Artist</button>
+        <button>User</button>
+        <button>Playlist</button>
+        <button>Album</button>
+      </div>
       <div className = "recent-searches-container">
         <h2>Recent searches</h2>
         <div className="recent-searches">

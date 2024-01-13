@@ -44,6 +44,7 @@ const PlaylistPopup = ({ isOpen, onClose}) => {
   
       if (response.status === 200) {
         console.log('Playlist created successfully. Response:',  response.data);
+        navigate('/');
         onClose();
       } else {
         console.error('Unexpected status code. Response:', response.data);
@@ -62,7 +63,7 @@ const PlaylistPopup = ({ isOpen, onClose}) => {
   if (!isOpen) return null;
   return (
     <div className="playlist-popup-overlay">
-        <div className="popup-create">
+      <div className="popup-create">
         <button className="playlist-close-btn" onClick={onClose}>&#10005;</button>
         <h1 className="popup-message">Create new playlist</h1>
         <label>Playlist Name</label>

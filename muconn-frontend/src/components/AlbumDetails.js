@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import "../styles/Album.css";
 import {Link} from 'react-router-dom';
 import useAuth from '../hooks/useAuth'; 
+import AddSongPopup from '../components/AddSongPopup';
 
 function AlbumDetails({albumTitle}) {
   const [albumSongs, setAlbumSongs] = useState([]);
   const { loginSuccess } = useAuth();
+  const [showPopup, setShowPopup] = useState(false);
+  const[songId, setSongId] = useState(null)
 
   useEffect(() => {
     fetchSongs();
@@ -20,6 +23,16 @@ function AlbumDetails({albumTitle}) {
     } catch (error) {
       console.error('Error fetching user playlists:', error);
     }
+  };
+
+  const openAddSongPopup = (songId) => {
+    setSongId(songId);
+    setShowPopup(true);
+  };
+
+  const closeAddSongPopup = () => {
+    setSongId(null);
+    setShowPopup(false);
   };
 
   return (
@@ -46,9 +59,22 @@ function AlbumDetails({albumTitle}) {
                   </div>
                 </div>
               </td>
-              <td className="heart"><i class='bx bx-heart'></i></td>
+              {loginSuccess ? (
+              <>
+                <td className="heart"><i class='bx bx-heart'></i></td>
+              </>
+              ) : (
+                <td></td>
+              )}
               <td>{song.duration}</td>
-              <td className="options"><i class='bx bx-dots-vertical-rounded' ></i></td>
+              {loginSuccess ? (
+              <>
+                <td className="options"><button className="options-btn" onClick={() => openAddSongPopup(song.id)}><i class='bx bx-dots-vertical-rounded'></i></button></td>
+                <AddSongPopup isOpen={showPopup} onClose={closeAddSongPopup} songId={songId}></AddSongPopup>
+              </>
+              ) : (
+                <td></td>
+              )}
             </tr>
           ))}
       </tbody>
