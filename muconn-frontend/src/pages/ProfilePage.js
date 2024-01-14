@@ -6,10 +6,12 @@ import "../styles/ProfilePage.css"
 import Playlists from "../components/UserPlaylists";
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
+import EditPopup from "../components/EditPopup";
 
 function ProfilePage() {
   const { loginSuccess } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const fetchUserDetails = async () => {
     try {
@@ -34,6 +36,14 @@ function ProfilePage() {
     fetchUserDetails();
   }, []);
 
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div>
       <LeftNav></LeftNav>
@@ -50,7 +60,8 @@ function ProfilePage() {
           <>
             {userDetails ? (
             <div>
-              <button><i class='bx bxs-pencil'></i></button>
+              <button onClick={openPopup}><i class='bx bxs-pencil'></i></button>
+              <EditPopup isOpen={showPopup} onClose={closePopup}></EditPopup>
             </div>
             ) : (
               <button><i class='bx bxs-user-plus' ></i></button>
