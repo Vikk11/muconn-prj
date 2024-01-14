@@ -119,4 +119,17 @@ public class UserController {
         }
     }
 
+    @PutMapping("/{userId}/edit-username")
+    public ResponseEntity<?> editUsername(@PathVariable Long userId, @RequestBody String newUsername) {
+        boolean success = userService.editUsername(userId, newUsername);
+
+        if (success) {
+            System.out.println("Username edited successfully: " + newUsername);
+            return ResponseEntity.ok("Edited successfully");
+        } else {
+            System.out.println("Username already taken: " + newUsername);
+            return ResponseEntity.badRequest().body("Username is already taken.");
+        }
+    }
+
 }

@@ -85,4 +85,17 @@ public class UserService {
         }
         return false;
     }
+
+    public boolean editUsername(Long userId, String newUsername) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        if(userRepository.existsByUsername(newUsername)){
+            return false;
+        }
+
+        user.setUsername(newUsername);
+        userRepository.save(user);
+        return true;
+    }
 }
