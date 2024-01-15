@@ -1,5 +1,6 @@
 package com.example.muconnbackend.DAL;
 
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +17,6 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     @Query("SELECT s FROM Song s WHERE s.album.title = :albumTitle")
     List<Song> findByAlbumTitle(@Param("albumTitle") String albumTitle);
+
+    List<Song> findByTitleContainingIgnoreCase(String searchQuery);
 }

@@ -1,5 +1,6 @@
 package com.example.muconnbackend.API;
 
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.PlaylistDto;
 import com.example.muconnbackend.Service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,11 @@ public class PlaylistController {
     public ResponseEntity<String> addSongToPlaylist(@PathVariable Long playlistId, @PathVariable Long songId) {
         playlistService.addSongToPlaylist(playlistId, songId);
         return ResponseEntity.ok("Song added to playlist successfully");
+    }
+
+    @GetMapping("/search/playlist?query={searchQuery}")
+    public List<PlaylistDto> searchPlaylistsBySearchQuery(@PathVariable String searchQuery) {
+        return playlistService.findPlaylistBySearchTerm(searchQuery);
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.muconnbackend.Service;
 
 import com.example.muconnbackend.DAL.PlaylistSongRepository;
 import com.example.muconnbackend.DAL.SongRepository;
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,4 +32,6 @@ public class SongService {
     public List<Song> getSongsByAlbumTitle(String albumTitle){
         return songRepository.findByAlbumTitle(albumTitle);
     }
+
+    public List<Song> findSongBySearchTerm(String searchQuery) { return songRepository.findByTitleContainingIgnoreCase(searchQuery);}
 }

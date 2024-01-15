@@ -1,5 +1,6 @@
 package com.example.muconnbackend.API;
 
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.Artist;
 import com.example.muconnbackend.Service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class ArtistController {
     public ResponseEntity<Artist> getArtistById(@PathVariable Long artistId) {
         Artist artist = artistService.getArtistDetails(artistId);
         return new ResponseEntity<>(artist, HttpStatus.OK);
+    }
+
+    @GetMapping("/search/artist?query={searchQuery}")
+    public List<Artist> searchArtistsBySearchQuery(@PathVariable String searchQuery) {
+        return artistService.findArtistBySearchTerm(searchQuery);
     }
 }

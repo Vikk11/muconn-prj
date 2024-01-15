@@ -1,5 +1,6 @@
 package com.example.muconnbackend.DAL;
 
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.Playlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,5 +15,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
     @Modifying
     @Query(value = "INSERT INTO playlist_songs (playlist_id, song_id) VALUES (:playlistId, :songId)", nativeQuery = true)
     void addSongToPlaylist(@Param("playlistId") Long playlistId, @Param("songId") Long songId);
+
+    List<Playlist> findByTitleContainingIgnoreCase(String searchQuery);
 
 }

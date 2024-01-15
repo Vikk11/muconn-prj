@@ -81,5 +81,17 @@ public class PlaylistService {
         playlistRepository.addSongToPlaylist(playlistId, songId);
     }
 
+    public List<PlaylistDto> findPlaylistBySearchTerm(String searchQuery) {
+        List<Playlist> playlists = playlistRepository.findByTitleContainingIgnoreCase(searchQuery);
+        List<PlaylistDto> playlistDTOs = new ArrayList<>();
+
+        for (Playlist playlist : playlists) {
+            PlaylistDto playlistDTO = convertPlaylistToPlaylistDto(playlist);
+            playlistDTOs.add(playlistDTO);
+        }
+
+        return playlistDTOs;
+    }
+
     //delete playlist
 }

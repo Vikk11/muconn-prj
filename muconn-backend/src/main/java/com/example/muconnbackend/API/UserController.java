@@ -1,4 +1,5 @@
 package com.example.muconnbackend.API;
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.UserDto;
 import com.example.muconnbackend.Service.TokenService;
 import com.example.muconnbackend.Service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -130,6 +132,23 @@ public class UserController {
             System.out.println("Username already taken: " + newUsername);
             return ResponseEntity.badRequest().body("Username is already taken.");
         }
+    }
+
+    @GetMapping("/search/user?query={searchQuery}")
+    public List<UserDto> searchUsersBySearchQuery(@PathVariable String searchQuery) {
+        return userService.findUserBySearchTerm(searchQuery);
+    }
+
+    @GetMapping("/{userId}/followers")
+    public ResponseEntity<List<UserDto>> getFollowers(@PathVariable Long userId) {
+        List<UserDto> followers = userService.getFollowers(userId);
+        return ResponseEntity.ok(followers);
+    }
+
+    @GetMapping("/{userId}/followings")
+    public ResponseEntity<List<UserDto>> getFollowings(@PathVariable Long userId) {
+        List<UserDto> followers = userService.getFollowings(userId);
+        return ResponseEntity.ok(followers);
     }
 
 }

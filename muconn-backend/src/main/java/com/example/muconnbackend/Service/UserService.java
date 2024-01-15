@@ -1,6 +1,7 @@
 package com.example.muconnbackend.Service;
 import com.example.muconnbackend.DAL.PlaylistRepository;
 import com.example.muconnbackend.DAL.UserRepository;
+import com.example.muconnbackend.Model.Album;
 import com.example.muconnbackend.Model.User;
 import com.example.muconnbackend.Model.UserDto;
 import jakarta.transaction.Transactional;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -97,5 +101,41 @@ public class UserService {
         user.setUsername(newUsername);
         userRepository.save(user);
         return true;
+    }
+
+    public List<UserDto> findUserBySearchTerm(String searchQuery) {
+        List<User> users = userRepository.findByUsernameContainingIgnoreCase(searchQuery);
+        List<UserDto> userDTOs = new ArrayList<>();
+
+        for (User user : users){
+            UserDto userDto = convertUserToUserDto(user);
+            userDTOs.add(userDto);
+        }
+
+        return userDTOs;
+    }
+
+    public List<UserDto> getFollowers(Long userId) {
+        List<User> users = userRepository.findFollowersByUserId(userId);
+        List<UserDto> userDTOs = new ArrayList<>();
+
+        for (User user : users){
+            UserDto userDto = convertUserToUserDto(user);
+            userDTOs.add(userDto);
+        }
+
+        return userDTOs;
+    }
+
+    public List<UserDto> getFollowings(Long userId) {
+        List<User> users = userRepository.findFollowingsByUserId(userId);
+        List<UserDto> userDTOs = new ArrayList<>();
+
+        for (User user : users){
+            UserDto userDto = convertUserToUserDto(user);
+            userDTOs.add(userDto);
+        }
+
+        return userDTOs;
     }
 }

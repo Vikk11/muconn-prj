@@ -30,4 +30,6 @@ public class AlbumService {
     public List<Album> getAlbumsByArtist(String artistName){
         return albumRepository.findByArtistName(artistName);
     }
+
+    public List<Album> findAlbumBySearchTerm(String searchQuery) { return albumRepository.findByTitleContainingIgnoreCase(searchQuery);}
 }
