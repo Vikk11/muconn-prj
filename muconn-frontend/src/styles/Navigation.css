@@ -125,8 +125,43 @@
     background-color: #b1a1ed; 
 }
 
+.rightSideNav button.active {
+    background-color: #b1a1ed; 
+}
+
 .rightSideNav button i{
     font-size: 26px;
+}
+
+.rightSideNav .content {
+    margin-top: 20px; 
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
+}
+  
+.rightSideNav .content div {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #40375b;
+    padding: 10px 20px;
+    display:flex;
+}
+
+.rightSideNav .content img.circleIcon {
+    width: 40px; 
+    height: 40px;
+    margin-right: 10px; 
+    border-radius: 50%; 
+}
+
+.rightSideNav .content span{
+    padding-top: 10px;
+}
+
+.user-link {
+    color: #b1a1ed;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .close-btn {

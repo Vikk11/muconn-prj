@@ -10,6 +10,7 @@ import Albums from "./pages/AlbumsPage";
 import Album from "./pages/Album";
 import Profile from "./pages/ProfilePage";
 import UserPlaylist from "./pages/UserPlaylistPage";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
   return (
@@ -19,13 +20,14 @@ function App() {
         <Route path="/" element = {<Home/>}/>
         <Route path="/login" element = {<Login/>}/>
         <Route path="/search" element = {<Search/>}/>
-        <Route path="/playlists" element = {<Playlists/>}/>
+        <Route path="/playlists/:username" element = {<Playlists/>}/>
         <Route path="/playlist/:playlistId" element = {<Playlist/>}/>
         <Route path="/artist/:artistId" element = {<Artist/>}/>
         <Route path="/albums/:artistName" element = {<Albums/>}/>
         <Route path="/album/:albumTitle" element = {<Album/>}/>
         <Route path ="/profile" element = {<Profile/>}/>
         <Route path="/user/playlist/:playlistId" element = {<UserPlaylist/>}/>
+        <Route path="/user/profile/:username" element = {<UsersPage/>}/>
       </Routes>
     </Router>
     </div>

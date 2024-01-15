@@ -41,7 +41,7 @@ function LeftNav({ visible, onClose }) {
       const response = await fetch(`http://localhost:8080/api/playlists/user/${userId}`); 
       const data = await response.json();
 
-      setLoggedUserPlaylists(data);
+      setLoggedUserPlaylists(data); 
     } catch (error) {
       console.error('Error fetching user playlists:', error);
     }
@@ -60,7 +60,7 @@ function LeftNav({ visible, onClose }) {
       setShowLoginAlert(true);
     } else {
       try {
-        navigate('/playlists');
+        navigate('/playlists', {});
       } catch (error) {
         console.error('Error checking login status:', error);
       }

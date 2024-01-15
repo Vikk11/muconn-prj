@@ -4,8 +4,10 @@ import LeftNav from "../components/LeftNav";
 import useAuth from '../hooks/useAuth'; 
 import axios from 'axios';
 import RightNav from "../components/RightNav";
+import { useParams } from 'react-router-dom';
 
 function Playlists() {
+  const { username } = useParams();
   const { loginSuccess } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
   const [userPlaylists, setUserPlaylists] = useState([]);
@@ -13,11 +15,11 @@ function Playlists() {
 
   const fetchUserDetails = async () => {
     try {
-      const username = localStorage.getItem('loggedInUser');
+      // const username = localStorage.getItem('loggedInUser');
   
-      if (!username) {
-        return;
-      }
+      // if (!username) {
+      //   return;
+      // }
   
       const response = await axios.get(`http://localhost:8080/api/users/user/details/${username}`, {
         withCredentials: true,

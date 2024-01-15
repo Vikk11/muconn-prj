@@ -30,3 +30,18 @@
     color: #635985;
     font-size: 40px;
 }
+
+.profile-container .follow-btn{
+    color:#18122b;
+    background-color: #635985;
+    border:none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor:pointer;
+    padding: 10px 10px;
+    width: 100px;
+}
+
+.profile-container .follow-btn:hover{
+    background-color: #b1a1ed;
+}

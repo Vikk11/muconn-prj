@@ -63,7 +63,7 @@
 .option-buttons button{
     width: 80px;
     height: 48px; 
-    margin-left: 32px; 
+    margin-left: 17px; 
     background-color: #625588; 
     color: #18122b;
     font-weight:500;
@@ -77,6 +77,10 @@
     background-color: #b1a1ed;
 }
 
+.option-buttons button.active {
+    background-color: #b1a1ed;
+}
+  
 .recent-searches-container h2{
     color: white;
     margin-left: 350px;

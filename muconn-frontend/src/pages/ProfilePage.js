@@ -48,30 +48,22 @@ function ProfilePage() {
     <div>
       <LeftNav></LeftNav>
       <div className="profile-container">
-          <img src={image}></img>
-          {userDetails ? (
-          <div>
-            <h1>{userDetails.username}</h1>
-          </div>
-          ) : (
-            <h1>Username</h1>
-          )}
-          {loginSuccess ? (
+        {userDetails && (
           <>
-            {userDetails ? (
-            <div>
+            <img src={image}></img>
+              <div>
+                <h1>{userDetails.username}</h1>
+              </div>
+              <div>
               <button onClick={openPopup}><i class='bx bxs-pencil'></i></button>
               <EditPopup isOpen={showPopup} onClose={closePopup}></EditPopup>
             </div>
-            ) : (
-              <button><i class='bx bxs-user-plus' ></i></button>
-            )}
           </>
-          ) : (
-            null
-          )}
+        )}
       </div>
-      <Playlists></Playlists>
+      {userDetails && (
+         <Playlists username = {userDetails.username}></Playlists>
+       )}
       {loginSuccess ? (
          <>
           <RightNav />

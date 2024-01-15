@@ -4,19 +4,13 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../hooks/useAuth'; 
 
-function UserPlaylists() {
+function UserPlaylists({username}) {
   const [userDetails, setUserDetails] = useState(null);
   const [userPlaylists, setUserPlaylists] = useState([]);
   const { loginSuccess } = useAuth();
 
   const fetchUserDetails = async () => {
     try {
-      const username = localStorage.getItem('loggedInUser');
-  
-      if (!username) {
-        return;
-      }
-  
       const response = await axios.get(`http://localhost:8080/api/users/user/details/${username}`, {
         withCredentials: true,
       });
@@ -54,19 +48,23 @@ function UserPlaylists() {
         <section className={loginSuccess ? "loggedin-section" : "album-section"}>
         <div className="section-title">
           <h1>Playlists</h1>
-          <Link to={"/playlists"} className="small-link">
+          <Link to={`/playlists/${username}`} className="small-link">
             See more
           </Link>
         </div>
         <div className={loginSuccess ? "logged-in-container-section" : "container-section"}>
-            {userPlaylists.map((playlist) => (
+          {userDetails && (
+            <>
+              {userPlaylists.map((playlist) => (
               <Link to={`/user/playlist/${playlist.id}`} className="box" key={playlist.id}>
                 <img src={`http://localhost:8080/images/playlists/${playlist.image}`} className="box-img"/>
                 <div className="box-text">
                   <h2>{playlist.title}</h2>
                 </div>
               </Link>
-            ))}
+              ))}
+            </>
+          )}
         </div>
       </section>
     </div>
