@@ -121,14 +121,18 @@ function Home() {
         </div>
         <div className="scroll-container">
           <div className={loginSuccess ? "loggedin-container-section" : "container-section"}>
-            {loggedUserPlaylists.map((userPlaylist) => (
-              <Link to={`/user/playlist/${userPlaylist.id}`} className="box" key={userPlaylist.id}>
-                <img src={`http://localhost:8080/images/playlists/${userPlaylist.image}`} className="box-img"/>
-                <div className="box-text">
-                  <h2>{userPlaylist.title}</h2>
-                </div>
-              </Link>
-            ))}
+            {userDetails && (
+              <>
+              {loggedUserPlaylists.map((userPlaylist) => (
+                <Link to={`/${userDetails.username}/playlist/${userPlaylist.id}`} className="box" key={userPlaylist.id}>
+                  <img src={`http://localhost:8080/images/playlists/${userPlaylist.image}`} className="box-img"/>
+                  <div className="box-text">
+                    <h2>{userPlaylist.title}</h2>
+                  </div>
+                </Link>
+              ))}
+              </>
+            )}
           </div>
         </div>
       </section>

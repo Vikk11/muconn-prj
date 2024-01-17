@@ -11,6 +11,7 @@ function LikedSongs() {
   const [showPopup, setShowPopup] = useState(false);
   const[songId, setSongId] = useState(null);
   const[userDetails, setUserDetails] = useState(null);
+  const[song, setSong] = useState(null);
 
   const fetchUserDetails = async () => {
     try {
@@ -56,6 +57,35 @@ function LikedSongs() {
     setSongId(null);
     setShowPopup(false);
   };
+
+  const unlikeSong = async (song) => {
+    try{
+        setSong(song);
+  
+        const likedSong = {
+          id: song.id,
+          album: song.album,
+          artist: song.artist,
+          title: song.title,
+          duration: song.duration
+        };
+        console.log(likedSong);
+        console.log(userDetails);
+  
+        await axios.delete('http://localhost:8080/api/likedsongs/unlike', {
+          data: {
+            user : { id: userDetails.id, username: userDetails.username, email: userDetails.email, password: userDetails.password }, 
+            song : likedSong
+          }
+        });
+  
+        fetchUserDetails();
+      } catch (error) {
+        console.error('Error liking song:', error);
+        setSong(null);
+      }
+  }
+
   return (
     <div >
       <table className={loginSuccess ? "loggedin-table" : null}>
@@ -87,7 +117,7 @@ function LikedSongs() {
               </td>
               <td><Link to={`/album/${song.album.title}`}><div className="song-album">{song.album.title}</div></Link></td>
               <td></td>
-              <td></td>
+              <td className="heart"><button className="options-btn" onClick={() => unlikeSong(song)}><i class='bx bxs-heart'></i></button></td>
               <td>{song.duration}</td>
               {loginSuccess ? (
               <>

@@ -67,6 +67,17 @@ function LeftNav({ visible, onClose }) {
     }
   };
 
+  const deletePlaylist = async (playlistId) => {
+    try{
+      console.log(userDetails.id);
+
+      await axios.delete(`http://localhost:8080/api/playlists/playlist/${playlistId}/delete/${userDetails.id}`)
+
+    }catch (error){
+      console.error('Error deleting playlist:', error)
+    }
+  }
+
   const openPopup = () => {
     setShowPopup(true);
   };
@@ -93,7 +104,9 @@ function LeftNav({ visible, onClose }) {
         <button className="create-playlist-btn" onClick={openPopup}><i class='bx bxs-plus-square'></i>Create Playlist</button>
         <PlaylistPopup isOpen={showPopup} onClose={closePopup}></PlaylistPopup>
         {loggedUserPlaylists.map((playlist) => (
+          <div className ="playlist-item">
           <Link to={`/${userDetails.username}/playlist/${playlist.id}`} className="playlist-link" >{playlist.title}</Link>
+          </div>
         ))}
       </>
   ) : null}

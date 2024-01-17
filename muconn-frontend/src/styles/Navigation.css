@@ -36,6 +36,11 @@
     border-bottom: 1px solid #393053;
 }
 
+.leftSideNav .playlist-item {
+  display: flex;
+  align-items: center;
+}
+
 .playlist-link{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -79,6 +84,14 @@
     padding-left:30px;
 }
 
+.trash-btn{
+    background-color:#201a33 ;
+    border:none;
+    cursor: pointer;
+    margin-left: 50px;
+    width: 30px;
+}
+
 .leftSideNav a:before {
     content: "";
     width: 4px; 
@@ -95,6 +108,8 @@
 .leftSideNav a:focus:before {
     opacity: 1; 
 }
+
+
 
 .rightSideNav{
     height: 100%;
@@ -159,6 +174,7 @@
     text-decoration: none;
     color: white;
 }
+
 
 .user-link {
     color: #b1a1ed;
