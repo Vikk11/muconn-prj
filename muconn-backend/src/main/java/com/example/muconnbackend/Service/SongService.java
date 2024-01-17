@@ -33,5 +33,9 @@ public class SongService {
         return songRepository.findByAlbumTitle(albumTitle);
     }
 
+    public List<Song> getSongsByUserId(Long userId){
+        return songRepository.findByUserId(userId);
+    }
+
     public List<Song> findSongBySearchTerm(String searchQuery) { return songRepository.findByTitleContainingIgnoreCase(searchQuery);}
 }

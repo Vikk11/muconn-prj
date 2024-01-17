@@ -19,4 +19,7 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     List<Song> findByAlbumTitle(@Param("albumTitle") String albumTitle);
 
     List<Song> findByTitleContainingIgnoreCase(String searchQuery);
+
+    @Query("SELECT s FROM LikedSong ls JOIN ls.song s JOIN s.album a JOIN s.artist ar WHERE ls.user.id = :userId")
+    List<Song> findByUserId(@Param("userId") Long userId) ;
 }
