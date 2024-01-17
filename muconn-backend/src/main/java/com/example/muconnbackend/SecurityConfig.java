@@ -24,7 +24,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/users/signup","/api/users/login", "/api/playlists/user/{userId}", "/images/playlists/**", "/images/albums/**", "/api/playlists/user/{userId}/playlist/{playlistId}", "/api/songs/playlist/{playlistId}", "/api/albums/{albumTitle}", "/api/artists/{artistId}", "/api/albums/artist/{artistName}", "/api/songs/album/{albumTitle}", "/images/artists/**", "/api/users/check-auth", "/api/users/user/details/{username}", "/api/users/refresh-token", "/api/playlists/createPlaylist", "/api/playlists/playlist/{playlistId}/addSong/{songId}", "/api/users/{userId}/edit-username", "/api/followers/follow", "/api/users/{userId}/followers", "/api/users/{userId}/followings", "/api/albums/search/album?query={searchQuery}", "/api/playlists/search/playlist?query={searchQuery}", "/api/users/search/user?query={searchQuery}", "/api/artists/search/artist?query={searchQuery}", "/api/songs/search/song?query={searchQuery}").permitAll()
+                                .requestMatchers("/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())

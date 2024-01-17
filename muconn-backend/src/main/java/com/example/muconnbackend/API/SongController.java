@@ -30,8 +30,8 @@ public class SongController {
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
-    @GetMapping("/search/song?query={searchQuery}")
-    public List<Song> searchSongsBySearchQuery(@PathVariable String searchQuery) {
-        return songService.findSongBySearchTerm(searchQuery);
+    @GetMapping("/search/song")
+    public List<Song> searchSongsBySearchQuery(@RequestParam String query) {
+        return songService.findSongBySearchTerm(query);
     }
 }

@@ -43,9 +43,9 @@ public class PlaylistController {
         return ResponseEntity.ok("Song added to playlist successfully");
     }
 
-    @GetMapping("/search/playlist?query={searchQuery}")
-    public List<PlaylistDto> searchPlaylistsBySearchQuery(@PathVariable String searchQuery) {
-        return playlistService.findPlaylistBySearchTerm(searchQuery);
+    @GetMapping("/search/playlist")
+    public List<PlaylistDto> searchPlaylistsBySearchQuery(@RequestParam String query) {
+        return playlistService.findPlaylistBySearchTerm(query);
     }
 
 }

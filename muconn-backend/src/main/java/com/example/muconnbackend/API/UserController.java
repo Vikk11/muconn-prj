@@ -134,9 +134,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("/search/user?query={searchQuery}")
-    public List<UserDto> searchUsersBySearchQuery(@PathVariable String searchQuery) {
-        return userService.findUserBySearchTerm(searchQuery);
+    @GetMapping("/search/user")
+    public List<UserDto> searchUsersBySearchQuery(@RequestParam String query) {
+        return userService.findUserBySearchTerm(query);
     }
 
     @GetMapping("/{userId}/followers")

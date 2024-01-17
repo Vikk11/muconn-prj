@@ -31,8 +31,8 @@ public class AlbumController {
         return new ResponseEntity<>(albums, HttpStatus.OK);
     }
 
-    @GetMapping("/search/album?query={searchQuery}")
-    public List<Album> searchAlbumsBySearchQuery(@PathVariable String searchQuery) {
-        return albumService.findAlbumBySearchTerm(searchQuery);
+    @GetMapping("/search/album")
+    public List<Album> searchAlbumsBySearchQuery(@RequestParam String query) {
+        return albumService.findAlbumBySearchTerm(query);
     }
 }
