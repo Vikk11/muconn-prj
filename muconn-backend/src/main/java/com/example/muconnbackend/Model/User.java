@@ -16,6 +16,13 @@ public class User {
     @Column
     private String password;
 
+    public User(){
+
+    }
+
+    public User(String newUser1, String mail, String password1) {
+    }
+
     public Long getId() {
         return id;
     }

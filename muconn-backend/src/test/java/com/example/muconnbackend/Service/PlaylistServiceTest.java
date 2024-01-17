@@ -69,24 +69,33 @@ class PlaylistServiceTest {
     }
 
     @Test
-    void testGetAllPlaylists() {
-        // Mock data
-        Playlist playlist1 = new Playlist();
-        playlist1.setId(1L);
-        playlist1.setTitle("Playlist 1");
-        playlist1.setImage("/path/to/image1");
+    void findPlaylistBySearchTerm_validSearchQuery_returnsMatchingPlaylists() {
+        // Arrange
+        String searchQuery = "newPlaylist";
+        List<Playlist> matchingPlaylists = Arrays.asList(
+                new Playlist("newPlaylist1"),
+                new Playlist("newPlaylist2")
+        );
 
-        Playlist playlist2 = new Playlist();
-        playlist2.setId(2L);
-        playlist2.setTitle("Playlist 2");
-        playlist2.setImage("/path/to/image2");
+        when(playlistRepository.findByTitleContainingIgnoreCase(searchQuery)).thenReturn(matchingPlaylists);
 
-        List<Playlist> mockPlaylists = Arrays.asList(playlist1, playlist2);
+        List<PlaylistDto> result = playlistService.findPlaylistBySearchTerm(searchQuery);
 
-        when(playlistRepository.findAll()).thenReturn(mockPlaylists);
+        assertEquals(matchingPlaylists.size(), result.size());
 
-        List<PlaylistDto> result = playlistService.getAllPlaylists();
-
-        verify(playlistRepository, times(1)).findAll();
+        assertEquals(matchingPlaylists.get(0).getTitle(), result.get(0).getTitle());
     }
+
+    @Test
+    void findPlaylistBySearchTerm_noMatchingPlaylists_returnsEmptyList() {
+        String searchQuery = "nonexistentPlaylist";
+
+        when(playlistRepository.findByTitleContainingIgnoreCase(searchQuery)).thenReturn(Collections.emptyList());
+
+        List<PlaylistDto> result = playlistService.findPlaylistBySearchTerm(searchQuery);
+
+        assertEquals(0, result.size());
+    }
+
+
 }

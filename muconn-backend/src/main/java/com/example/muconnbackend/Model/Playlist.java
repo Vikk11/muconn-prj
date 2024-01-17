@@ -58,6 +58,12 @@ public class Playlist {
         this.image = image;
     }
 
+    public Playlist(){
+
+    }
+
+    public Playlist(String title){}
+
 //    public List<PlaylistSong> getPlaylistSongs() {return playlistSongs;}
 //
 //    public void setPlaylistSongs(List<PlaylistSong> playlistSongs) {this.playlistSongs = playlistSongs;}
