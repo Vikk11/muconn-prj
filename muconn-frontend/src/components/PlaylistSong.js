@@ -44,7 +44,7 @@ function PlaylistSong({ playlistId }) {
             <th>#</th>
             <th>Title</th>
             <th>Album</th>
-            <th>Date Added</th>
+            <th></th>
             <th></th>
             <th><i class='bx bx-time'></i></th>
             <th></th>
@@ -64,7 +64,7 @@ function PlaylistSong({ playlistId }) {
                 </div>
               </td>
               <td><Link to={`/album/${song.album.title}`}><div className="song-album">{song.album.title}</div></Link></td>
-              <td>Oct 11, 2023</td>
+              <td></td>
               {loginSuccess ? (
               <>
                 <td className="heart"><i class='bx bx-heart'></i></td>

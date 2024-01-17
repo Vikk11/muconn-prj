@@ -56,7 +56,7 @@ function UserPlaylists({username}) {
           {userDetails && (
             <>
               {userPlaylists.map((playlist) => (
-              <Link to={`/user/playlist/${playlist.id}`} className="box" key={playlist.id}>
+              <Link to={`/${userDetails.username}/playlist/${playlist.id}`} className="box" key={playlist.id}>
                 <img src={`http://localhost:8080/images/playlists/${playlist.image}`} className="box-img"/>
                 <div className="box-text">
                   <h2>{playlist.title}</h2>

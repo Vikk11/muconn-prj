@@ -70,7 +70,7 @@ const EditPopup = ({isOpen, onClose}) => {
     <div className="profile-popup-overlay">
       <div className="popup-edit">
         <button className="edit-close-btn" onClick={onClose}>&#10005;</button>
-        <h1>Profile Details</h1>
+        
         {error && <div className="error-message">{error}</div>}
         <label>Username</label>
         <input type="text" value={newUsername} placeholder="New Username" onChange={(e) => setUsername(e.target.value)}/>

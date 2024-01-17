@@ -106,12 +106,12 @@
     padding:4px 8px;
 }
 
-.addsong-close-btn{
+.popup-add .addsong-close-btn{
     position: absolute;
-    margin-left:165px;
+    margin-left:175px;
     padding-bottom: 30px;
     cursor: pointer;
-    background-color: #443c68;
+    background-color: #18122b;
     color: whitesmoke;
     font-size: 12px;
     border: none;
@@ -134,10 +134,11 @@
 }
 
 .playlist-btn{
-    background-color: #443c68;
-    border: 1px solid #373055; 
+    background-color: #18122b;
+    border:none;
+    border-bottom: 1px solid #373055; 
     color: white; 
-    padding: 10px 24px; 
+    padding: 10px 50px; 
     cursor: pointer; 
     width: 100%; 
     display: block;
@@ -174,27 +175,29 @@
 
 .popup-edit{
     background-color: #18122b;
-    padding: 20px 40px 30px 40px;
+    padding: 30px 60px 30px 60px;
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-.edit-close-btn{
+.popup-edit .edit-close-btn{
     position: absolute;
-    margin-left:640px;
-    padding-bottom: 30px;
+    margin-left:380px;
+    margin-bottom: 40px;
+    width:20px;
     cursor: pointer;
     background-color: #443c68;
     color: whitesmoke;
     font-size: 12px;
     border: none;
     border-radius: 25px;
-    padding:4px 8px;
+    padding:2px 5px;
 }
 
-.popup-edit h1{
+.popup-edit .popup-edit-text{
     color: white;
-    font-size:12px;
+    font-size:18px;
+    padding-right: 40px;
     margin-bottom: 38px;
     font-weight: 400;
 }
@@ -215,7 +218,7 @@
     background-color: #393053;
 }
 
-.edit-confirm-button{
+.popup-edit .edit-confirm-button{
     background-color: #443c68;
     border:none;
     border-radius:15px;

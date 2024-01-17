@@ -60,9 +60,9 @@ function Playlists() {
         <section className={loginSuccess ? "loggedin-section" : "album-section"}>
         <div className="section-title">
         </div>
-        <div className={loginSuccess ? "loggedin-albums-container-section" : "albums-container-section"}>
+        <div className="albums-container-section">
         {userPlaylists.map((playlist) => (
-            <Link to={`/user/playlist/${playlist.id}`} className="box">
+            <Link to={`/${username}/playlist/${playlist.id}`} className="box">
             <img src={`http://localhost:8080/images/albums/${playlist.image}`} className="box-img"/>
             <div className="box-text">
               <h2>{playlist.title}</h2>

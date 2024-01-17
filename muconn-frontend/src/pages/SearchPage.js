@@ -39,19 +39,19 @@ function SearchPage() {
   
         switch (selectedButton) {
           case 'songs':
-            response = await fetch(`http://localhost:8080/api/songs/search/song?query=${searchQuery}`);
+            response = await fetch(`http://localhost:8080/api/songs/search/song?query=${encodeURIComponent(searchQuery)}`);
             break;
           case 'artists':
-            response = await fetch(`http://localhost:8080/api/artists/search/artist?query=${searchQuery}`);
+            response = await fetch(`http://localhost:8080/api/artists/search/artist?query=${encodeURIComponent(searchQuery)}`);
             break;
           case 'users':
-            response = await fetch(`http://localhost:8080/api/users/search/user?query=${searchQuery}`);
+            response = await fetch(`http://localhost:8080/api/users/search/user?query=${encodeURIComponent(searchQuery)}`);
             break;
           case 'playlists':
-            response = await fetch(`http://localhost:8080/api/playlists/search/playlist?query=${searchQuery}`);
+            response = await fetch(`http://localhost:8080/api/playlists/search/playlist?query=${encodeURIComponent(searchQuery)}`);
             break;
           case 'albums':
-            response = await fetch(`http://localhost:8080/api/albums/search/album?query=${searchQuery}`);
+            response = await fetch(`http://localhost:8080/api/albums/search/album?query=${encodeURIComponent(searchQuery)}`);
             break;
           default:
             break;
@@ -60,7 +60,7 @@ function SearchPage() {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-  
+
         data = await response.json();
         setSearchResults(data?.results || []);
       } else {

@@ -92,7 +92,7 @@ function RightNav() {
           {userFollowing.map((user) => (
             <div>
             <img src={image} className="circleIcon" />
-            <span>{user.username}</span>
+            <Link to ={`/chat/${user.username}`}className="link-username">{user.username}</Link>
             </div>
           ))}
         </div>

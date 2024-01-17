@@ -154,8 +154,10 @@
     border-radius: 50%; 
 }
 
-.rightSideNav .content span{
+.rightSideNav .content .link-username{
     padding-top: 10px;
+    text-decoration: none;
+    color: white;
 }
 
 .user-link {

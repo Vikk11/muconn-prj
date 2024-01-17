@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 function UserPlaylistPage() {
     const [leftNavVisible, setLeftNavVisible] = useState(false);
-    const { playlistId } = useParams();
+    const { username, playlistId } = useParams();
     console.log('Playlist ID:', playlistId);
     const [playlistDetails, setPlaylistDetails] = useState(null);
     const { loginSuccess } = useAuth();
@@ -19,11 +19,11 @@ function UserPlaylistPage() {
 
     const fetchUserDetails = async () => {
       try {
-        const username = localStorage.getItem('loggedInUser');
+        // const username = localStorage.getItem('loggedInUser');
     
-        if (!username) {
-          return;
-        }
+        // if (!username) {
+        //   return;
+        // }
     
         const response = await axios.get(`http://localhost:8080/api/users/user/details/${username}`, {
           withCredentials: true,
