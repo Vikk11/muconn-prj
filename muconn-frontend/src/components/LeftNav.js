@@ -87,7 +87,7 @@ function LeftNav({ visible, onClose }) {
       {loginSuccess ? (
       <>
         <p className="nav-title">YOUR MUSIC</p>
-        <Link to="/" className={activeLink === '/likedsongs' ? 'active-link' : ''}><i className='bx bxs-heart'></i>Liked Songs</Link>
+        <Link to="/likedSongs" className={activeLink === '/likedsongs' ? 'active-link' : ''}><i className='bx bxs-heart'></i>Liked Songs</Link>
         <Link to="/search" className={activeLink === '/recentlyplayed' ? 'active-link' : ''}><i className='bx bx-history' ></i>Recently Played</Link>
         <p className="nav-title">YOUR PLAYLISTS</p>
         <button className="create-playlist-btn" onClick={openPopup}><i class='bx bxs-plus-square'></i>Create Playlist</button>

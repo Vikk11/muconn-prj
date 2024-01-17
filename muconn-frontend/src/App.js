@@ -12,6 +12,7 @@ import Profile from "./pages/ProfilePage";
 import UserPlaylist from "./pages/UserPlaylistPage";
 import UsersPage from "./pages/UsersPage";
 import Chatroom from "./pages/Chatroom";
+import LikedSongs from "./pages/LikedSongsPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/:username/playlist/:playlistId" element = {<UserPlaylist/>}/>
         <Route path="/user/profile/:username" element = {<UsersPage/>}/>
         <Route path="/chat/:username" element = {<Chatroom/>}/>
+        <Route path="/likedSongs" element = {<LikedSongs/>}/>
       </Routes>
     </Router>
     </div>

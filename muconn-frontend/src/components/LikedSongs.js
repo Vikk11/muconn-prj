@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react';
 import "../styles/PlaylistSong.css";
 import {Link} from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import AddSongPopup from '../components/AddSongPopup';
 import axios from 'axios';
 
-function PlaylistSong({ playlistId }) {
+function LikedSongs() {
   const [playlistSongs, setPlaylistSongs] = useState([]);
   const { loginSuccess } = useAuth();
   const [showPopup, setShowPopup] = useState(false);
-  const[songId, setSongId] = useState(null)
+  const[songId, setSongId] = useState(null);
   const[userDetails, setUserDetails] = useState(null);
-  const[song, setSong] = useState(null);
-
-  useEffect(() => {
-    fetchUserDetails();
-  }, []);
-
-  const fetchSongs = async () => {
-    try {
-      const response = await fetch(`http://localhost:8080/api/songs/playlist/${playlistId}`); 
-      const data = await response.json();
-
-      setPlaylistSongs(data);
-    } catch (error) {
-      console.error('Error fetching user playlists:', error);
-    }
-  };
 
   const fetchUserDetails = async () => {
     try {
@@ -48,31 +32,20 @@ function PlaylistSong({ playlistId }) {
     }
   };
 
-  const likeSong = async (song) => {
-    try{
-      setSongId(song);
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
 
-      const likedSong = {
-        id: song.id,
-        album: song.album,
-        artist: song.artist,
-        title: song.title,
-        duration: song.duration
-      };
-      console.log(likedSong);
-      console.log(userDetails);
+  const fetchSongs = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/songs/user/${userId}`); 
+      const data = await response.json();
 
-      await axios.post('http://localhost:8080/api/likedsongs/like', {
-        user : { id: userDetails.id, username: userDetails.username, email: userDetails.email, password: userDetails.password }, 
-        song : likedSong,
-      });
-
+      setPlaylistSongs(data);
     } catch (error) {
-      console.error('Error liking song:', error);
-      setSong(null);
+      console.error('Error fetching user playlists:', error);
     }
-
-  }
+  };
 
   const openAddSongPopup = (songId) => {
     setSongId(songId);
@@ -83,7 +56,6 @@ function PlaylistSong({ playlistId }) {
     setSongId(null);
     setShowPopup(false);
   };
-
   return (
     <div >
       <table className={loginSuccess ? "loggedin-table" : null}>
@@ -100,8 +72,8 @@ function PlaylistSong({ playlistId }) {
         </thead>
         <tbody>
         {userDetails && (
-          <>
-          {playlistSongs.map((song, index) => (
+            <>
+            {playlistSongs.map((song, index) => (
             <tr className="line-separator" key={song.id}>
               <td>{index + 1}</td>
               <td>
@@ -115,13 +87,7 @@ function PlaylistSong({ playlistId }) {
               </td>
               <td><Link to={`/album/${song.album.title}`}><div className="song-album">{song.album.title}</div></Link></td>
               <td></td>
-              {loginSuccess ? (
-              <>
-                <td className="heart"><button className="options-btn" onClick={() => likeSong(song)}><i class='bx bx-heart'></i></button></td>
-              </>
-              ) : (
-                <td></td>
-              )}
+              <td></td>
               <td>{song.duration}</td>
               {loginSuccess ? (
               <>
@@ -132,8 +98,8 @@ function PlaylistSong({ playlistId }) {
                 <td></td>
               )}
             </tr>
-          ))}
-          </>
+            ))}
+            </>
         )}
         </tbody>
       </table>
@@ -141,4 +107,4 @@ function PlaylistSong({ playlistId }) {
   )
 }
 
-export default PlaylistSong
+export default LikedSongs

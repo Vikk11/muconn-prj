@@ -145,7 +145,7 @@
 }
 
 .playlist-btn:hover{
-    background-color: #373055;
+    background: linear-gradient(to top, #373055, #1a1a2e);
 }
 
 .confimation-popup{
