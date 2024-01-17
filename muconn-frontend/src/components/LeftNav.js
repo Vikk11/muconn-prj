@@ -93,7 +93,7 @@ function LeftNav({ visible, onClose }) {
         <button className="create-playlist-btn" onClick={openPopup}><i class='bx bxs-plus-square'></i>Create Playlist</button>
         <PlaylistPopup isOpen={showPopup} onClose={closePopup}></PlaylistPopup>
         {loggedUserPlaylists.map((playlist) => (
-          <Link to={`/user/playlist/${playlist.id}`} className="playlist-link" >{playlist.title}</Link>
+          <Link to={`/${userDetails.username}/playlist/${playlist.id}`} className="playlist-link" >{playlist.title}</Link>
         ))}
       </>
   ) : null}

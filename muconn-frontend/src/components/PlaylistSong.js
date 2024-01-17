@@ -41,7 +41,7 @@ function PlaylistSong({ playlistId }) {
       });
   
       setUserDetails(response.data);
-      await fetchSongs(response.data.id)
+      await fetchSongs()
     } catch (error) {
       console.error('Error fetching user details:', error);
       setUserDetails(null);
@@ -50,7 +50,7 @@ function PlaylistSong({ playlistId }) {
 
   const likeSong = async (song) => {
     try{
-      setSongId(song);
+      setSong(song);
 
       const likedSong = {
         id: song.id,
@@ -116,9 +116,9 @@ function PlaylistSong({ playlistId }) {
               <td><Link to={`/album/${song.album.title}`}><div className="song-album">{song.album.title}</div></Link></td>
               <td></td>
               {loginSuccess ? (
-              <>
-                <td className="heart"><button className="options-btn" onClick={() => likeSong(song)}><i class='bx bx-heart'></i></button></td>
-              </>
+                <>
+                  <td className="heart"><button className="options-btn" onClick={() => likeSong(song)}><i class='bx bx-heart'></i></button></td>
+                </>
               ) : (
                 <td></td>
               )}
