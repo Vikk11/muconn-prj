@@ -20,4 +20,8 @@ public class LikedSongService {
         newSong.setSong(song.getSong());
         likedSongsRepository.save(newSong);
     }
+
+    public void unlikeSong(LikedSong song) {
+        likedSongsRepository.delete(song);
+    }
 }

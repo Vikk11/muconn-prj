@@ -48,4 +48,14 @@ public class PlaylistController {
         return playlistService.findPlaylistBySearchTerm(query);
     }
 
+    @DeleteMapping("playlist/{playlistId}/delete/{userId}")
+    public ResponseEntity<String> deletePlaylist(@PathVariable Long playlistId, @PathVariable Long userId) {
+        try {
+            playlistService.deletePlaylist(playlistId, userId);
+            return ResponseEntity.ok("Playlist deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting playlist");
+        }
+    }
+
 }

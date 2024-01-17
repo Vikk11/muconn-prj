@@ -18,6 +18,7 @@ public class CorsConfig {
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
 
         config.addAllowedHeader("*");
         config.setAllowCredentials(true);

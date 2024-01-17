@@ -97,5 +97,28 @@ class PlaylistServiceTest {
         assertEquals(0, result.size());
     }
 
+    @Test
+    void deletePlaylist_playlistExists_shouldDelete() {
+        Long playlistId = 1L;
+        Long userId = 1L;
+        Playlist playlist = new Playlist("Existing Playlist");
+        when(playlistRepository.findByIdAndUser_Id(playlistId, userId)).thenReturn(playlist);
+
+        playlistService.deletePlaylist(playlistId, userId);
+
+        verify(playlistRepository, times(1)).delete(playlist);
+    }
+
+    @Test
+    void deletePlaylist_playlistDoesNotExist_shouldNotDelete() {
+        Long playlistId = 2L;
+        Long userId = 1L;
+
+        when(playlistRepository.findByIdAndUser_Id(playlistId, userId)).thenReturn(null);
+
+        playlistService.deletePlaylist(playlistId, userId);
+
+        verify(playlistRepository, never()).delete(any(Playlist.class));
+    }
 
 }

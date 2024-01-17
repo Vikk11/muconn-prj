@@ -93,5 +93,14 @@ public class PlaylistService {
         return playlistDTOs;
     }
 
+    public void deletePlaylist(Long playlistId, Long userId) {
+        Playlist playlist = playlistRepository.findByIdAndUser_Id(playlistId, userId);
+
+        if (playlist != null) {
+            playlistRepository.delete(playlist);
+        }
+    }
+
+
     //delete playlist
 }
