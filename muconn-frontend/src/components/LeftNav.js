@@ -53,7 +53,7 @@ function LeftNav({ visible, onClose }) {
 
   useEffect(() => {
     fetchUserDetails();
-  }, []);
+  }, [userDetails]);
 
   const handlePlaylistsClick = async () => {
     if (!loginSuccess) {

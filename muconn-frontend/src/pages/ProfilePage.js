@@ -34,7 +34,7 @@ function ProfilePage() {
 
   useEffect(() => {
     fetchUserDetails();
-  }, []);
+  }, [userDetails]);
 
   const openPopup = () => {
     setShowPopup(true);

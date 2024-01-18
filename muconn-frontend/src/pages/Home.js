@@ -115,7 +115,7 @@ function Home() {
         <section className={loginSuccess ? "loggedin-section" : "default-section"}>
         <div className="section-title">
           <h1>Your Playlists</h1>
-          <Link to={"/playlists"} className="small-link">
+          <Link to={`/playlists/${userDetails.username}`} className="small-link">
             See more
           </Link>
         </div>

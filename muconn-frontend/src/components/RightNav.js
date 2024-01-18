@@ -83,7 +83,7 @@ function RightNav() {
 
   useEffect(() => {
     fetchUserDetails(); 
-  }, []);
+  }, [userDetails]);
 
   const renderContent = () => {
     if (activeButton === 'message' && userFollowing.length > 0) {
